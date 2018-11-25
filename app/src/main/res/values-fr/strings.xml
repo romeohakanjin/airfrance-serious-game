@@ -3,4 +3,5 @@
     <string name="connection_registration_number">Numéro de matricule</string>
     <string name="connection_password">Mot de passe</string>
     <string name="connection_login">Connexion</string>
+    <string name="connection_logout">Déconnexion</string>
 </resources>
