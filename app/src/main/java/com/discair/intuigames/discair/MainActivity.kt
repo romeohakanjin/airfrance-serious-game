@@ -7,7 +7,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.discair.intuigames.discair.api.RetrofitClient
+import com.discair.intuigames.discair.api.StackServiceInterface
+import com.discair.intuigames.discair.api.agents.Agents
 import com.discair.intuigames.discair.session.SessionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+
 
 /**
  * @author RHA
@@ -17,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var registrationNumberEditText: EditText
     lateinit var passwordEditText: EditText
     lateinit var loginButton: Button
-    lateinit var registrationNumber: String
+    var registrationNumber: Int = 0
     var password: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +49,10 @@ class MainActivity : AppCompatActivity() {
                 override fun onClick(v: View?) {
                     try {
                         // verification on the connection information
-                        registrationNumber = registrationNumberEditText.text.toString()
+                        registrationNumber = registrationNumberEditText.text.toString().toInt()
                         password = passwordEditText.text.toString().toInt()
 
-                        // connection information validate
-                        sessionManager.createLoginSession(registrationNumber, password)
-
-                        // redirection on home page
-                        redirectionHomePage()
+                        checkIdentifiants(registrationNumber, password)
                     } catch (exception: Exception) {
                         Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
                     }
@@ -57,9 +61,38 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun validateConnection(){
+        // connection information validate
+        sessionManager.createLoginSession(registrationNumber, password)
+
+        // redirection on home page
+        redirectionHomePage()
+    }
+
     fun redirectionHomePage(){
-        var intent: Intent = Intent(applicationContext, HomeActivity::class.java)
+        var intent = Intent(applicationContext, HomeActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    fun checkIdentifiants(registrationNumber: Int, password: Int){
+        val mService = RetrofitClient.getAgents()!!.create(StackServiceInterface::class.java)
+
+        mService.getAgent(registrationNumber, password).enqueue(object : Callback<List<Agents>> {
+            override fun onResponse(call: Call<List<Agents>>, response: Response<List<Agents>>) {
+                if (response.isSuccessful()) {
+                    if (response.body()!!.size == 1){
+                        //val agent = response.body()!![0]
+                        validateConnection()
+                    } else{
+                        Toast.makeText(this@MainActivity, "Informations incorrectes !", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Agents>>, t: Throwable) {
+                t.printStackTrace()
+            }
+        })
     }
 }

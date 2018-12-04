@@ -28,9 +28,9 @@ public class SessionManager{
 
     }
 
-    fun createLoginSession(registrationNumber: String, password: Int){
+    fun createLoginSession(registrationNumber: Int, password: Int){
         editor.putBoolean(IS_LOGIN, true)
-        editor.putString(KEY_REGISTRATION_NUMBER, registrationNumber)
+        editor.putInt(KEY_REGISTRATION_NUMBER, registrationNumber)
         editor.putInt(KEY_PASSWORD, password)
         editor.commit()
     }
@@ -44,8 +44,8 @@ public class SessionManager{
         }
     }
 
-    fun getUserRegistrationNumber(): String{
-        var registrationNumber : String = preferences.getString(KEY_REGISTRATION_NUMBER, null)
+    fun getUserRegistrationNumber(): Int{
+        var registrationNumber : Int = preferences.getInt(KEY_REGISTRATION_NUMBER, 0)
         return registrationNumber
     }
 

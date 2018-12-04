@@ -17,7 +17,7 @@ class HomeActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-        
+
         sessionManager = SessionManager(applicationContext)
         logoutButton = findViewById(R.id.connection_logout_button);
 
