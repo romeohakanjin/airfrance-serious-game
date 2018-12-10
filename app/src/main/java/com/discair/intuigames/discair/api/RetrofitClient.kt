@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-    private val BASE_URL = "http://192.168.150.1:1000/api/"
+    private val BASE_URL = "https://peaceful-castle-89767.herokuapp.com/"
     private var retrofit: Retrofit? = null
 
     fun getAgents() : Retrofit?{

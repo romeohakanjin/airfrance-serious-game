@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
                         checkIdentifiants(registrationNumber, password)
                     } catch (exception: Exception) {
+                        exception.printStackTrace()
                         Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -81,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         mService.getAgent(registrationNumber, password).enqueue(object : Callback<List<Agents>> {
             override fun onResponse(call: Call<List<Agents>>, response: Response<List<Agents>>) {
                 if (response.isSuccessful()) {
+                    System.out.println(response.body()!!.size)
                     if (response.body()!!.size == 1){
                         //val agent = response.body()!![0]
                         validateConnection()
@@ -91,6 +93,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Agents>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Problème de connexion", Toast.LENGTH_SHORT).show()
                 t.printStackTrace()
             }
         })

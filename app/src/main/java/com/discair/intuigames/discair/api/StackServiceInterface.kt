@@ -13,8 +13,4 @@ interface StackServiceInterface {
     @GET("agents")
     fun getAgent(@Query("registration_number") registration_number: Int, @Query("password") password: Int): Call<List<Agents>>
 
-    @POST("createAgent")
-    fun createAgent(agent: Agents): Call<ResponseBody>
-
-
 }
