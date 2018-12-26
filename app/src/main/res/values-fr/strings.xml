@@ -4,4 +4,7 @@
     <string name="connection_password">Mot de passe</string>
     <string name="connection_login">Connexion</string>
     <string name="connection_logout">Déconnexion</string>
+    <string name="button_validate">Confirmer</string>
+    <string name="aeroport_terminal">Terminal</string>
+    <string name="aeroport_name">Nom de l\'aéroport (code)</string>
 </resources>

@@ -8,7 +8,7 @@ import com.discair.intuigames.discair.MainActivity
 /**
  * @author RHA
  */
-public class SessionManager{
+class SessionManager{
     lateinit var preferences: SharedPreferences
     lateinit var editor: SharedPreferences.Editor
     lateinit var context: Context

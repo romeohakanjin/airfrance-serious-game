@@ -14,7 +14,6 @@ import com.discair.intuigames.discair.session.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 
 /**
@@ -40,9 +39,9 @@ class MainActivity : AppCompatActivity() {
             redirectionHomePage()
         } else {
             // initialize view components
-            registrationNumberEditText = findViewById(R.id.connection_registration_number_edittext);
-            passwordEditText = findViewById(R.id.connection_password_edittext);
-            loginButton = findViewById(R.id.connection_login_button);
+            registrationNumberEditText = findViewById(R.id.connection_registration_number_edittext)
+            passwordEditText = findViewById(R.id.connection_password_edittext)
+            loginButton = findViewById(R.id.connection_login_button)
 
             // login button listener
             loginButton.setOnClickListener(object : View.OnClickListener {
@@ -77,7 +76,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun checkIdentifiants(registrationNumber: Int, password: Int){
-        val mService = RetrofitClient.getAgents()!!.create(StackServiceInterface::class.java)
+        val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
 
         mService.getAgent(registrationNumber, password).enqueue(object : Callback<List<Agents>> {
             override fun onResponse(call: Call<List<Agents>>, response: Response<List<Agents>>) {

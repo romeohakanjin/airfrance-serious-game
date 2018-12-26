@@ -3,5 +3,8 @@
     <string name="connection_registration_number">Registration number</string>
     <string name="connection_password">Password</string>
     <string name="connection_login">Login</string>
+    <string name="aeroport_name">Aeroport name (code)</string>
+    <string name="aeroport_terminal">Terminal</string>
+    <string name="button_validate">Validate</string>
     <string name="connection_logout">Logout</string>
 </resources>
