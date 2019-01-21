@@ -7,4 +7,13 @@
     <string name="button_validate">Confirmer</string>
     <string name="aeroport_terminal">Terminal</string>
     <string name="aeroport_name">Nom de l\'aéroport (code)</string>
+    <string name="flight_departure">Départ</string>
+    <string name="flight_arrival">Arrivé</string>
+    <string name="flight_time">Heure de vol</string>
+    <string name="flight_status">Statut</string>
+    <string name="flight_boarding">Enregistrement</string>
+    <string name="flight_destination">Destination</string>
+    <string name="flight_number">Vol</string>
+    <string name="flight_terminal">Terminal:</string>
+    <string name="flight_list_last_refresh">Mis à jour:</string>
 </resources>

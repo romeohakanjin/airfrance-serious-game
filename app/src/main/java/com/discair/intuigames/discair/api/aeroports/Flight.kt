@@ -35,5 +35,7 @@ class Flight {
     @SerializedName("incident")
     @Expose
     var incident: List<Incident>? = null
-
+    @SerializedName("status")
+    @Expose
+    var status: Status? = null
 }

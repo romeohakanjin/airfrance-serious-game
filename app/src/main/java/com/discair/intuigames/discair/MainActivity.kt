@@ -53,12 +53,34 @@ class MainActivity : AppCompatActivity() {
 
                         checkIdentifiants(registrationNumber, password)
                     } catch (exception: Exception) {
-                        exception.printStackTrace()
                         Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
                     }
                 }
             })
         }
+    }
+
+    fun checkIdentifiants(registrationNumber: Int, password: Int){
+        val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
+
+        mService.getAgent(registrationNumber, password).enqueue(object : Callback<List<Agents>> {
+            override fun onResponse(call: Call<List<Agents>>, response: Response<List<Agents>>) {
+                if (response.isSuccessful()) {
+                    val agents : List<Agents> = response.body()!!
+                    if (agents.size == 1) {
+                        if (agents[0].registrationNumber == registrationNumber && agents[0].password == password){
+                            validateConnection()
+                        }
+                    } else{
+                        Toast.makeText(this@MainActivity, "Informations incorrectes !", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Agents>>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Problème de connexion", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     fun validateConnection(){
@@ -73,28 +95,5 @@ class MainActivity : AppCompatActivity() {
         var intent = Intent(applicationContext, HomeActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    fun checkIdentifiants(registrationNumber: Int, password: Int){
-        val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
-
-        mService.getAgent(registrationNumber, password).enqueue(object : Callback<List<Agents>> {
-            override fun onResponse(call: Call<List<Agents>>, response: Response<List<Agents>>) {
-                if (response.isSuccessful()) {
-                    System.out.println(response.body()!!.size)
-                    if (response.body()!!.size == 1){
-                        //val agent = response.body()!![0]
-                        validateConnection()
-                    } else{
-                        Toast.makeText(this@MainActivity, "Informations incorrectes !", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<Agents>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Problème de connexion", Toast.LENGTH_SHORT).show()
-                t.printStackTrace()
-            }
-        })
     }
 }

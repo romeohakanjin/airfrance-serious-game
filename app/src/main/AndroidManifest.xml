@@ -28,7 +28,17 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".FlightsActivity"></activity>
+        <activity
+            android:name=".FlightsActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FlightActivity"
+            android:label="@string/title_activity_flight"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
