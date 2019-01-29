@@ -1,6 +1,6 @@
 package com.discair.intuigames.discair.api
 
-import com.discair.intuigames.discair.api.aeroports.Aeroport
+import com.discair.intuigames.discair.api.airports.Airport
 import com.discair.intuigames.discair.api.agents.Agents
 import retrofit2.Call
 import retrofit2.http.*
@@ -27,19 +27,26 @@ interface StackServiceInterface {
     fun getAgent(@Path("registration_number") registration_number: Int, @Path("password") password: Int): Call<List<Agents>>
 
     /**
-     * Get aaeroport list by name and terminal
-     * @param aeroportName: aeroport name
-     * @param aeroportTerminal: aeroport terminal
+     * Get airport list by name and terminal
+     * @param airportName: airport name
+     * @param airportTerminal: airport terminal
      */
-    @GET("aeroports/{name}/{terminal}")
-    fun getAeroport(@Path("name") aeroportName: String, @Path("terminal") aeroportTerminal: String): Call<List<Aeroport>>
+    @GET("airports/{name}/{terminal}")
+    fun getAirport(@Path("name") airportName: String, @Path("terminal") airportTerminal: String): Call<List<Airport>>
 
     /**
-     * get Aeroport WITH flight(s) list by aeroport name and terminal name
-     * @param aeroportName: aeroport name
-     * @param aeroportTerminal: aeroport terminal
+     * get Airport WITH flight(s) list by airport name and terminal name
+     * @param airportName: airport name
+     * @param airportTerminal: airport terminal
      */
-    @GET("aeroports/flights/{name}/{terminal}")
-    fun getFlights(@Path("name") aeroportName: String, @Path("terminal") aeroportTerminal: String): Call<List<Aeroport>>
+    @GET("airports/flights/{name}/{terminal}")
+    fun getFlights(@Path("name") airportName: String, @Path("terminal") airportTerminal: String): Call<List<Airport>>
+
+    /**
+     * get Airport WITH flight(s) for arrival list by airport name and terminal name
+     * @param airportName: airport name
+     */
+    @GET("flights/{destination}/arrival")
+    fun getFlightsArrival(@Path("destination") destination: String): Call<List<Airport>>
 
 }

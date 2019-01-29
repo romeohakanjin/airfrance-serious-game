@@ -1,4 +1,4 @@
-package com.discair.intuigames.discair.api.aeroports
+package com.discair.intuigames.discair.api.airports
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

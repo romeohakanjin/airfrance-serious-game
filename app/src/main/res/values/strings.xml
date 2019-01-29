@@ -3,23 +3,17 @@
     <string name="connection_registration_number">Registration number</string>
     <string name="connection_password">Password</string>
     <string name="connection_login">Login</string>
-    <string name="aeroport_name">Aeroport name (code)</string>
-    <string name="aeroport_terminal">Terminal</string>
+    <string name="airport_name">Airport name (code)</string>
+    <string name="airport_terminal">Terminal</string>
     <string name="button_validate">Validate</string>
     <string name="connection_logout">Logout</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="flight_departure">Departure</string>
     <string name="flight_arrival">Arrival</string>
     <string name="flight_time">Flight time</string>
     <string name="flight_destination">Destination</string>
     <string name="flight_number">Flight</string>
     <string name="flight_boarding">Boarding</string>
-    <string name="flight_status">Status</string>
+    <string name="flight_status" translatable="false">Status</string>
     <string name="flight_terminal">Terminal:</string>
     <string name="flight_list_last_refresh">Last refresh:</string>
-    <string name="title_activity_flight">FlightActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="action_settings">Settings</string>
 </resources>

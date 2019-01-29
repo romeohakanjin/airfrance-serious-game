@@ -23,7 +23,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".AeroportTerminalActivity">
+        <activity android:name=".AirportTerminalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -37,8 +37,11 @@
         </activity>
         <activity
             android:name=".FlightActivity"
-            android:label="@string/title_activity_flight"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

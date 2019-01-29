@@ -1,5 +1,6 @@
 package com.discair.intuigames.discair.fragment
 
+import android.content.Intent
 import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.view.Gravity
@@ -10,17 +11,14 @@ import android.widget.*
 import com.discair.intuigames.discair.R
 import com.discair.intuigames.discair.api.RetrofitClient
 import com.discair.intuigames.discair.api.StackServiceInterface
-import com.discair.intuigames.discair.api.aeroports.Aeroport
-import com.discair.intuigames.discair.api.aeroports.Flight
-import kotlinx.android.synthetic.main.fragment_flights_arrival.view.*
+import com.discair.intuigames.discair.api.airports.Airport
+import com.discair.intuigames.discair.api.airports.Flight
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TextView
-
-
+import com.discair.intuigames.discair.FlightActivity
 
 /**
  * @author RHA
@@ -37,8 +35,8 @@ class FlightsDepartureFragment : Fragment() {
         // Get intent extra
         val bundle = this.arguments
         if (bundle != null) {
-            aeroportName = bundle.getString("aeroportName").toString()
-            aeroportTerminal = bundle.getString("aeroportTerminal").toString()
+            aeroportName = bundle.getString("airportName").toString()
+            aeroportTerminal = bundle.getString("airportTerminal").toString()
         }
 
         // Set airport and terminal value on the view
@@ -50,8 +48,8 @@ class FlightsDepartureFragment : Fragment() {
         // Get flights list
         val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
 
-        mService.getFlights(aeroportName, aeroportTerminal).enqueue(object : Callback<List<Aeroport>>{
-            override fun onResponse(call: Call<List<Aeroport>>, response: Response<List<Aeroport>>) {
+        mService.getFlights(aeroportName, aeroportTerminal).enqueue(object : Callback<List<Airport>>{
+            override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) {
                 if (response.isSuccessful) {
                     try {
                         val listSize: Int = response.body()!!.size
@@ -62,7 +60,7 @@ class FlightsDepartureFragment : Fragment() {
                         for (i in 0..(listSize-1)){
                             val flight: Flight = response.body()!![i].flight!!
                             val tableRow = TableRow(rootView.context)
-                            tableRow.layoutParams = (TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT))
+                            tableRow.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
 
                             val flightTimeTextView = TextView(rootView.context)
                             flightTimeTextView.text = flight.departureTime.toString()
@@ -93,6 +91,31 @@ class FlightsDepartureFragment : Fragment() {
                                 addView(statusTextView)
                             }
 
+                            tableRow.isClickable = true
+                            tableRow.setOnClickListener(object : View.OnClickListener {
+                                override fun onClick(view: View) {
+                                    val tableRowSelected = view as TableRow
+                                    val flightTimeTextView = tableRowSelected.getChildAt(0)  as TextView
+                                    val destinationTextView = tableRowSelected.getChildAt(1)  as TextView
+                                    val flightTextView = tableRowSelected.getChildAt(2)  as TextView
+                                    val boardingTextView = tableRowSelected.getChildAt(3)  as TextView
+                                    val statusTextView = tableRowSelected.getChildAt(4)  as TextView
+
+                                    // change view and pass parameters
+                                    val intent = Intent(rootView.context, FlightActivity::class.java)
+
+                                    // To pass data to next activity
+                                    intent.putExtra("flightTimeTextView", flightTimeTextView.text)
+                                    intent.putExtra("destinationTextView", destinationTextView.text)
+                                    intent.putExtra("flightTextView", flightTextView.text)
+                                    intent.putExtra("boardingTextView", boardingTextView.text)
+                                    intent.putExtra("statusTextView", statusTextView.text)
+
+                                    // start next activity
+                                    startActivity(intent)
+                                }
+                            })
+
                             // Add the table row to the view
                             flightTableLayout.addView(tableRow)
                         }
@@ -102,7 +125,7 @@ class FlightsDepartureFragment : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<List<Aeroport>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Airport>>, t: Throwable) {
                 t.printStackTrace()
             }
         })

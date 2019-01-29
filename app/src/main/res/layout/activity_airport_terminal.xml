@@ -5,18 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".AeroportTerminalActivity">
+    tools:context=".AirportTerminalActivity">
 
     <TextView
-        android:id="@+id/aeroportNameTextView"
+        android:id="@+id/airportNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:text="@string/aeroport_name"
+        android:text="@string/airport_name"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="85dp" />
 
     <EditText
-        android:id="@+id/aeroportNameEditText"
+        android:id="@+id/airportNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -25,15 +25,15 @@
         tools:layout_editor_absoluteY="104dp" />
 
     <TextView
-        android:id="@+id/aeroportTerminalTextView"
+        android:id="@+id/airportTerminalTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/aeroport_terminal"
+        android:text="@string/airport_terminal"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="165dp" />
 
     <EditText
-        android:id="@+id/aeroportTerminalEditText"
+        android:id="@+id/airportTerminalEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -42,7 +42,7 @@
         tools:layout_editor_absoluteY="184dp" />
 
     <Button
-        android:id="@+id/aeroportValidateButton"
+        android:id="@+id/airportValidateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_validate"

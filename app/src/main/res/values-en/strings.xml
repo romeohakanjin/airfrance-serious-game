@@ -4,8 +4,6 @@
     <string name="connection_password">Password</string>
     <string name="connection_login">Login</string>
     <string name="connection_logout">Logout</string>
-    <string name="aeroport_name">Aeroport name (code)</string>
-    <string name="aeroport_terminal">Terminal</string>
     <string name="button_validate">Validate</string>
     <string name="flight_arrival">Arrival</string>
     <string name="flight_departure">Departure</string>
@@ -16,4 +14,6 @@
     <string name="flight_number">Flight</string>
     <string name="flight_terminal">Terminal:</string>
     <string name="flight_list_last_refresh">Last refresh:</string>
+    <string name="airport_terminal">Terminal</string>
+    <string name="airport_name">Airport name (code)</string>
 </resources>
