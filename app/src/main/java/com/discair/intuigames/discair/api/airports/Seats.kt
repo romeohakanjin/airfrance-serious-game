@@ -3,20 +3,20 @@ package com.discair.intuigames.discair.api.airports
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class Airport {
+class Seats {
     @SerializedName("_id")
     @Expose
     var id: String? = null
 
-    @SerializedName("name")
+    @SerializedName("premiere")
     @Expose
-    var name: String? = null
+    var premiere: String? = null
 
-    @SerializedName("terminals")
+    @SerializedName("business")
     @Expose
-    var terminals: List<Terminal>? = null
+    var business: String? = null
 
-    @SerializedName("flight")
+    @SerializedName("eco")
     @Expose
-    var flight: Flight? = null
+    var eco: String? = null
 }

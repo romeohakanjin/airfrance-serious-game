@@ -36,7 +36,7 @@ class AirportTerminalActivity : AppCompatActivity() {
         airportValidateButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 try {
-                    // verification on the airport information
+                    // verification of the airport information
                     airportName = airportNameEditText.text.toString()
                     airportTerminal = airportTerminalEditText.text.toString()
                     checkAirportTerminal(airportName,airportTerminal)

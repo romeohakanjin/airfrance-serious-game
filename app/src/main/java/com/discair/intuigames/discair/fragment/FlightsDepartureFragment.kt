@@ -25,8 +25,8 @@ import com.discair.intuigames.discair.FlightActivity
  */
 class FlightsDepartureFragment : Fragment() {
     private lateinit var rootView: View
-    private lateinit var aeroportName: String
-    private lateinit var aeroportTerminal: String
+    private lateinit var airportName: String
+    private lateinit var airportTerminal: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -35,20 +35,20 @@ class FlightsDepartureFragment : Fragment() {
         // Get intent extra
         val bundle = this.arguments
         if (bundle != null) {
-            aeroportName = bundle.getString("airportName").toString()
-            aeroportTerminal = bundle.getString("airportTerminal").toString()
+            airportName = bundle.getString("airportName").toString()
+            airportTerminal = bundle.getString("airportTerminal").toString()
         }
 
         // Set airport and terminal value on the view
         val flightTerminalTextView: TextView = rootView.findViewById(R.id.terminalValueTextView)
         val terminalValueTextView: TextView = rootView.findViewById(R.id.valueFlightListLastRefreshTextView)
-        flightTerminalTextView.text = aeroportName
-        terminalValueTextView.text = aeroportTerminal
+        flightTerminalTextView.text = airportName
+        terminalValueTextView.text = airportTerminal
 
         // Get flights list
         val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
 
-        mService.getFlights(aeroportName, aeroportTerminal).enqueue(object : Callback<List<Airport>>{
+        mService.getFlights(airportName, airportTerminal).enqueue(object : Callback<List<Airport>>{
             override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) {
                 if (response.isSuccessful) {
                     try {
