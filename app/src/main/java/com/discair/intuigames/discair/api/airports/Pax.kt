@@ -8,11 +8,11 @@ class Pax {
     @Expose
     var id: String? = null
 
-    @SerializedName("status")
+    @SerializedName("pax_status")
     @Expose
     var status: String? = null
 
-    @SerializedName("type")
+    @SerializedName("pax_type")
     @Expose
     var type: String? = null
 }
