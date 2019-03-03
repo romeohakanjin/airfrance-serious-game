@@ -60,4 +60,9 @@ interface StackServiceInterface {
         @GET("flight/{flighttime}/{destination}/{flight}/{boarding}/{status}")
     fun getFlightInformations(@Path("flighttime") flightTime: String, @Path("destination") destination: String, @Path("flight") flight: String, @Path("boarding") boarding: String, @Path("status") status: String): Call<List<Airport>>
 
+    @GET("passengers/{num_flight}")
+    fun getPassengersByFLightNumber(@Path("num_flight") numFlight: Int): Call<List<Airport>>
+
+    @GET("passenger/{reference_number}")
+    fun getPassengerByReferenceNumber(@Path("reference_number") referenceNumber: Int): Call<List<Airport>>
 }
