@@ -51,8 +51,7 @@ class FlightsDepartureFragment : Fragment(), SwipeRefreshLayout.OnRefreshListene
             // Refresh the list here.
             activity!!.runOnUiThread {
                 val flightTableLayout: TableLayout = rootView.findViewById(R.id.fragementFlightTableLayout)
-                // number of child - 1 for the view containaing the labels of the view
-                val numberOfViews: Int = flightTableLayout.childCount - 1
+
                 flightTableLayout.removeAllViews()
 
                 getDepartureFlightsAndSetTextviews()

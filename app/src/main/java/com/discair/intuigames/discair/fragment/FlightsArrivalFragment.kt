@@ -48,8 +48,6 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
             // Refresh the list here.
             activity!!.runOnUiThread {
                 val flightTableLayout: TableLayout = rootView.findViewById(R.id.fragementFlightTableLayout)
-                // number of child - 1 for the view containaing the labels of the view
-                val numberOfViews: Int = flightTableLayout.childCount - 1
                 flightTableLayout.removeAllViews()
 
                 getArrivalFlightsAndSetTextviews()
@@ -68,6 +66,9 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
         return rootView
     }
 
+    /**
+     * 
+     */
     private fun getArrivalFlightsAndSetTextviews(){
         // Get intent extra
         val bundle = this.arguments
@@ -95,7 +96,7 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
                     val flightTableLayout: TableLayout = rootView.findViewById(R.id.fragementFlightTableLayout)
 
                     // set the default line labels
-                    var defaultTableRow: TableRow = setFirstRowLabels()
+                    val defaultTableRow: TableRow = setFirstRowLabels()
                     flightTableLayout.addView(defaultTableRow)
 
                     // For every flights create associated View Component
