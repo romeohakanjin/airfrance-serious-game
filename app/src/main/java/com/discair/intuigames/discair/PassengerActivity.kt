@@ -31,6 +31,7 @@ class PassengerActivity : AppCompatActivity() {
     }
 
     fun changeFragment(fragment: Fragment, refNumber: Int) {
+        System.out.println(""+fragment+"");
         val args = Bundle()
         args.putInt("referenceNumber", referenceNumber)
         fragment.arguments = args

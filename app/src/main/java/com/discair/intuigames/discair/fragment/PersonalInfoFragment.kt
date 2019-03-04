@@ -34,7 +34,7 @@ class PersonalInfoFragment : Fragment() {
         if (bundle != null) {
             referenceNumber = bundle.getInt("referenceNumber")
         }
-
+        System.out.println("Cocuou")
         this.getPassengeInfoByRefNumber(referenceNumber)
         return fragment
     }
@@ -48,12 +48,14 @@ class PersonalInfoFragment : Fragment() {
         mService.getPassengerByReferenceNumber(referenceNum).enqueue(object : Callback<List<Airport>> {
             override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) {
                 if (response.isSuccessful()) {
+                    System.out.println(response.body()!!.size)
                     if (response.body()!!.size == 1){
                         val airport = response.body()!![0]
                         val flight = airport.flight
                         if(flight!!.passenger!!.size >= 1){
                             for(pass in flight!!.passenger as List<Passenger>){
-                                if(pass.referenceNumber!!.equals(referenceNum)){
+                                if(pass.referenceNumber!!.toInt().equals(referenceNum)){
+
                                     val personalInfoLayout = fragment.findViewById(R.id.PersonalInfo) as TableLayout
                                     val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT)
 
@@ -153,19 +155,19 @@ class PersonalInfoFragment : Fragment() {
                                     mail.gravity = Gravity.CENTER;
                                     mailRow.addView(mail)
 
-                                    //Mail
+                                    //Status
                                     val statusRow = TableRow(fragment.context)
                                     statusRow.id = TableRow.generateViewId()
                                     statusRow.layoutParams = layoutParams
 
                                     val statusTitle = TextView(fragment.context)
-                                    statusTitle.text = "Mail"
+                                    statusTitle.text = "Statut"
                                     statusTitle.gravity = Gravity.CENTER;
                                     statusRow.addView(statusTitle)
 
                                     val status = TextView(fragment.context)
                                     status.tag = "status"
-                                    status.text = pass.status.toString()
+                                    status.text = pass.status!!.wording.toString()
                                     status.gravity = Gravity.CENTER;
                                     statusRow.addView(status)
 

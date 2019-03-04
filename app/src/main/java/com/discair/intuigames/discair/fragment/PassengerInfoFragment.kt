@@ -31,6 +31,7 @@ class PassengerInfoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
+        System.out.println("coucou j'ouvre le fragment")
         fragment = inflater.inflate(R.layout.fragment_personal_info, container, false)
 
         //Get intent extra
@@ -60,12 +61,14 @@ class PassengerInfoFragment : Fragment() {
                                 if(pass.referenceNumber!!.equals(referenceNum)){
                                     val passengerInfoLayout = fragment.findViewById(R.id.PassengerInfo) as TableLayout
                                     val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT)
-                                    /*if(pass.luggage != null){
-                                        val luggage = pass.luggage
+                                    if(pass.luggage!!.number != null){
+                                        val luggage = pass.luggage!!.number
+                                        System.out.println(luggage)
                                     }
-                                    if(pass.incidents != null){
-                                        val incidents = pass.incidents
-                                    }*/
+                                    if(pass.incident != null){
+                                        val incidents = pass.incident
+                                        System.out.println(incidents)
+                                    }
 
 
                                 }
