@@ -31,7 +31,6 @@ class PassengerInfoFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        System.out.println("coucou j'ouvre le fragment")
         fragment = inflater.inflate(R.layout.fragment_passenger_info, container, false)
 
         //Get intent extra
@@ -58,22 +57,63 @@ class PassengerInfoFragment : Fragment() {
                         val flight = airport.flight
                         if(flight!!.passenger!!.size >= 1){
                             for(pass in flight!!.passenger as List<Passenger>){
-                                if(pass.referenceNumber!!.equals(referenceNum)){
+                                if(pass.referenceNumber!!.toInt().equals(referenceNum)){
                                     val passengerInfoLayout = fragment.findViewById(R.id.PassengerInfo) as TableLayout
                                     val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT)
+
                                     if(pass.luggage!!.number != null){
-                                        val luggage = pass.luggage!!.number
-                                        System.out.println(luggage)
+                                        val luggageRow = TableRow(fragment.context)
+                                        luggageRow.id = TableRow.generateViewId()
+                                        luggageRow.layoutParams = layoutParams
+
+                                        val luggageTitle = TextView(fragment.context)
+                                        luggageTitle.text = "Baggages : "
+                                        luggageTitle.gravity = Gravity.CENTER;
+                                        luggageRow.addView(luggageTitle)
+
+                                        val luggageNumber = TextView(fragment.context)
+                                        luggageNumber.tag = "luggageNumber"
+                                        luggageNumber.text = pass.luggage!!.number.toString()
+                                        luggageNumber.gravity = Gravity.CENTER;
+                                        luggageRow.addView(luggageNumber)
                                     }
                                     if(pass.incident != null){
-                                        val incidents = pass.incident
-                                        System.out.println(incidents)
+
+                                        val luggageRow = TableRow(fragment.context)
+                                        luggageRow.id = TableRow.generateViewId()
+                                        luggageRow.layoutParams = layoutParams
+
+                                        val luggageTitle = TextView(fragment.context)
+                                        luggageTitle.text = "Incident(s) : "
+                                        luggageTitle.gravity = Gravity.CENTER;
+                                        luggageRow.addView(luggageTitle)
+
+                                        for(inc in pass.incident as List<Incident>){
+                                            val luggageTypeTitle = TextView(fragment.context)
+                                            luggageTypeTitle.text = "Type de l'incident : "
+                                            luggageTypeTitle.gravity = Gravity.CENTER;
+                                            luggageRow.addView(luggageTypeTitle)
+
+                                            val incidentType = TextView(fragment.context)
+                                            incidentType.tag = "incidentType"
+                                            incidentType.text = inc.type
+                                            incidentType.gravity = Gravity.CENTER;
+                                            luggageRow.addView(incidentType)
+
+                                            val luggageDescriptionTitle = TextView(fragment.context)
+                                            luggageDescriptionTitle.text = "Type de l'incident : "
+                                            luggageDescriptionTitle.gravity = Gravity.CENTER;
+                                            luggageRow.addView(luggageDescriptionTitle)
+
+                                            val incidentDescription = TextView(fragment.context)
+                                            incidentDescription.tag = "incidentDescription"
+                                            incidentDescription.text = inc.description
+                                            incidentDescription.gravity = Gravity.CENTER;
+                                            luggageRow.addView(incidentDescription)
+                                        }
                                     }
-
-
                                 }
                             }
-
                         }
                     }
                 }

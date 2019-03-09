@@ -41,7 +41,6 @@ class PassengersListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
         val intent = this.arguments
         if (intent != null) {
             numFlight = intent.getString("flightTextView").toInt()
-            System.out.println(numFlight)
             getPassengersByFlightNumber(numFlight)
         }
 
@@ -67,7 +66,6 @@ class PassengersListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
                                 val passengersTableLayout = rootView.findViewById(R.id.fragementPassengersTableLayout) as TableLayout
 
                                 for (pass in passengerList as List<Passenger>){
-                                    System.out.println("pass")
                                     val tableRowId = TextView.generateViewId()
 
                                     val row = TableRow(rootView.context)
@@ -113,7 +111,6 @@ class PassengersListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
 
                                                 val intent = Intent(rootView.context, PassengerActivity::class.java)
                                                 intent.putExtra("referenceNumber", referenceNumber)
-                                                System.out.println(referenceNumber)
                                                 startActivityForResult(intent, 0)
                                             } catch (exception: Exception) {
                                                 Toast.makeText(rootView.context, "Click Broken", Toast.LENGTH_SHORT).show()

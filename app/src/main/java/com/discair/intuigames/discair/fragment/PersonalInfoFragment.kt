@@ -34,7 +34,6 @@ class PersonalInfoFragment : Fragment() {
         if (bundle != null) {
             referenceNumber = bundle.getString("referenceNumber")
         }
-        System.out.println("Cocuou")
         this.getPassengeInfoByRefNumber(referenceNumber)
         return fragment
     }
@@ -48,7 +47,6 @@ class PersonalInfoFragment : Fragment() {
         mService.getPassengerByReferenceNumber(referenceNum).enqueue(object : Callback<List<Airport>> {
             override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) {
                 if (response.isSuccessful()) {
-                    System.out.println(response.body()!!.size)
                     if (response.body()!!.size == 1){
                         val airport = response.body()!![0]
                         val flight = airport.flight
