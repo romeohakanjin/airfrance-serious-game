@@ -16,4 +16,8 @@
     <string name="flight_status" translatable="false">Status</string>
     <string name="flight_terminal">Terminal:</string>
     <string name="flight_list_last_refresh">Last refresh:</string>
+    <string name="flight">Flight</string>
+    <string name="passengers">Passengers</string>
+    <string name="passengerPersonnalInformations">Personnal info.</string>
+    <string name="passengerInformations">Info. passenger</string>
 </resources>

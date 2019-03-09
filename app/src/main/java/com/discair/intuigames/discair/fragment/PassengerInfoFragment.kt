@@ -26,18 +26,18 @@ class PassengerInfoFragment : Fragment() {
      * Variables
      */
     private lateinit var fragment: View
-    private var referenceNumber: Int=0
+    private lateinit var referenceNumber: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         System.out.println("coucou j'ouvre le fragment")
-        fragment = inflater.inflate(R.layout.fragment_personal_info, container, false)
+        fragment = inflater.inflate(R.layout.fragment_passenger_info, container, false)
 
         //Get intent extra
         val bundle = this.arguments
         if(bundle != null){
-            referenceNumber = bundle.getInt("referenceNumber")
+            referenceNumber = bundle.getString("referenceNumber")
             this.getPassengeInfoByRefNumber(referenceNumber)
         }
 
@@ -48,7 +48,7 @@ class PassengerInfoFragment : Fragment() {
      * Récupère la liste des passagers grâce au numéro de vol
      * Affiche les passagers dans la vue
      */
-    fun getPassengeInfoByRefNumber(referenceNum: Int){
+    fun getPassengeInfoByRefNumber(referenceNum: String){
         val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
         mService.getPassengerByReferenceNumber(referenceNum).enqueue(object : Callback<List<Airport>> {
             override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) {

@@ -64,5 +64,5 @@ interface StackServiceInterface {
     fun getPassengersByFLightNumber(@Path("num_flight") numFlight: Int): Call<List<Airport>>
 
     @GET("passenger/{reference_number}")
-    fun getPassengerByReferenceNumber(@Path("reference_number") referenceNumber: Int): Call<List<Airport>>
+    fun getPassengerByReferenceNumber(@Path("reference_number") referenceNumber: String): Call<List<Airport>>
 }

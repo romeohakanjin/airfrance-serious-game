@@ -22,7 +22,7 @@ class PersonalInfoFragment : Fragment() {
      * Variables
      */
     private lateinit var fragment: View
-    private var referenceNumber: Int=0
+    private lateinit var referenceNumber: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -32,7 +32,7 @@ class PersonalInfoFragment : Fragment() {
         // Get intent extra
         val bundle = this.arguments
         if (bundle != null) {
-            referenceNumber = bundle.getInt("referenceNumber")
+            referenceNumber = bundle.getString("referenceNumber")
         }
         System.out.println("Cocuou")
         this.getPassengeInfoByRefNumber(referenceNumber)
@@ -43,7 +43,7 @@ class PersonalInfoFragment : Fragment() {
      * Récupère la liste des passagers grâce au numéro de vol
      * Affiche les passagers dans la vue
      */
-    fun getPassengeInfoByRefNumber(referenceNum: Int){
+    fun getPassengeInfoByRefNumber(referenceNum: String){
         val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
         mService.getPassengerByReferenceNumber(referenceNum).enqueue(object : Callback<List<Airport>> {
             override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) {
@@ -54,7 +54,7 @@ class PersonalInfoFragment : Fragment() {
                         val flight = airport.flight
                         if(flight!!.passenger!!.size >= 1){
                             for(pass in flight!!.passenger as List<Passenger>){
-                                if(pass.referenceNumber!!.toInt().equals(referenceNum)){
+                                if((pass.referenceNumber) == referenceNum){
 
                                     val personalInfoLayout = fragment.findViewById(R.id.PersonalInfo) as TableLayout
                                     val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT)

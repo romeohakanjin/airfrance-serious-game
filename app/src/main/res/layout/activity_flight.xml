@@ -1,297 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipeToRefreshLayout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".FlightActivity">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/appbar_padding_top"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/flightActivityTableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/flightTabItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/flight" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/passengerTabItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/passengers" />
+        </android.support.design.widget.TabLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <TextView
-            android:id="@+id/flightTerminalTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/flight_terminal"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/terminalValueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:allowUndo="false"
-            app:layout_constraintStart_toEndOf="@+id/flightTerminalTextView"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Value terminal" />
-
-        <TextView
-            android:id="@+id/valueFlightListLastRefreshTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Value refresh" />
-
-        <TextView
-            android:id="@+id/flightListLastRefreshTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/flight_list_last_refresh"
-            app:layout_constraintEnd_toStartOf="@+id/valueFlightListLastRefreshTextView"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/airportDepartureArrivalTextView"
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:gravity="center"
-            android:text="Airport 6 -> Kennedy airportd"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flightListLastRefreshTextView"
-            tools:text="Airport 6 -> Kennedy airport" />
+            android:layout_height="match_parent"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            android:id="@+id/recyclerFlights"/>
 
-        <TextView
-            android:id="@+id/availableClientsReservationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Réservés"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clientTextView" />
-
-        <TextView
-            android:id="@+id/availableClientsRegistredTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="Enregistrés"
-            app:layout_constraintEnd_toStartOf="@+id/availableClientsOnboardTextView"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintStart_toEndOf="@+id/availableClientsReservationTextView"
-            app:layout_constraintTop_toBottomOf="@+id/clientTextView" />
-
-        <TextView
-            android:id="@+id/availableClientsOnboardTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="Embarqués"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clientTextView" />
-
-        <TextView
-            android:id="@+id/availableSeatsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:text="Siège disponible"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.509"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalClientsRegistredTextView" />
-
-        <TextView
-            android:id="@+id/availableSeatsPremiereTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_weight="1"
-            android:text="10 business"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/availableSeatsTextView" />
-
-        <TextView
-            android:id="@+id/availableSeatsEconomyTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="150 economy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/availableSeatsTextView" />
-
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="Client à spécificité"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.474"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/availableSeatsTextView" />
-
-
-        <TextView
-            android:id="@+id/umTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_weight="1"
-            android:text="0 UM"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/pmrTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="0 PMR"
-            app:layout_constraintEnd_toStartOf="@+id/babiesTextView"
-            app:layout_constraintHorizontal_bias="0.508"
-            app:layout_constraintStart_toEndOf="@+id/umTextView"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/babiesTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="0 Bébés"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/GPTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="8dp"
-            android:text="GP"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pmrTextView" />
-
-        <TextView
-            android:id="@+id/confirmedTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
-            android:layout_weight="1"
-            android:text="0 confirmé"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/GPTextView" />
-
-        <TextView
-            android:id="@+id/seatServicesTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="0 sièges service"
-            app:layout_constraintEnd_toStartOf="@+id/waitingListTextView"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toEndOf="@+id/confirmedTextView"
-            app:layout_constraintTop_toBottomOf="@+id/GPTextView" />
-
-        <TextView
-            android:id="@+id/waitingListTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:text="0 liste d'attente"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/GPTextView" />
-
-        <TextView
-            android:id="@+id/totalClientsReservationTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disponible 150"
-            app:layout_constraintStart_toStartOf="@+id/availableClientsReservationTextView"
-            app:layout_constraintTop_toBottomOf="@+id/availableClientsReservationTextView" />
-
-        <TextView
-            android:id="@+id/totalClientsRegistredTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disponible 150"
-            app:layout_constraintStart_toStartOf="@+id/availableClientsRegistredTextView"
-            app:layout_constraintTop_toBottomOf="@+id/availableClientsRegistredTextView" />
-
-        <TextView
-            android:id="@+id/totalClientsOnboardTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disponible 150"
-            app:layout_constraintEnd_toEndOf="@+id/availableClientsOnboardTextView"
-            app:layout_constraintTop_toBottomOf="@+id/availableClientsOnboardTextView" />
-
-        <TextView
-            android:id="@+id/clientTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
-            android:text="Clients"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/airportDepartureArrivalTextView" />
-
-        <TextView
-            android:id="@+id/availableSeatsBusinessTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:text="14 Business"
-            app:layout_constraintEnd_toStartOf="@+id/availableSeatsEconomyTextView"
-            app:layout_constraintStart_toEndOf="@+id/availableSeatsPremiereTextView"
-            app:layout_constraintTop_toBottomOf="@+id/availableSeatsTextView" />
-
-    </android.support.constraint.ConstraintLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+    </android.support.v4.view.ViewPager>
+</android.support.design.widget.CoordinatorLayout>

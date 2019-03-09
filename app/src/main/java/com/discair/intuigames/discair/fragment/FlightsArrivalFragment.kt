@@ -67,7 +67,7 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
     }
 
     /**
-     * 
+     *
      */
     private fun getArrivalFlightsAndSetTextviews(){
         // Get intent extra
@@ -153,6 +153,7 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
                                 intent.putExtra("flightTextView", flightTextView.text)
                                 intent.putExtra("boardingTextView", boardingTextView.text)
                                 intent.putExtra("statusTextView", statusTextView.text)
+                                intent.putExtra("airportTerminal", airportTerminal)
                                 intent.putExtra("airportTerminal", airportTerminal)
 
                                 // start next activity

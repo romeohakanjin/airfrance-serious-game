@@ -16,4 +16,8 @@
     <string name="flight_list_last_refresh">Mis à jour:</string>
     <string name="airport_name">"Nom aeroport (code): "</string>
     <string name="airport_terminal">"Terminal "</string>
+    <string name="flight">Vol</string>
+    <string name="passengers">Passagers</string>
+    <string name="passengerPersonnalInformations">Info. personnelles</string>
+    <string name="passengerInformations">Info. passager</string>
 </resources>

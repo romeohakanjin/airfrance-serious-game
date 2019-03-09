@@ -1,181 +1,97 @@
 package com.discair.intuigames.discair
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
-import com.discair.intuigames.discair.api.RetrofitClient
-import com.discair.intuigames.discair.api.StackServiceInterface
-import com.discair.intuigames.discair.api.airports.Airport
-import com.discair.intuigames.discair.api.airports.Passenger
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
-import android.support.v4.widget.SwipeRefreshLayout
+import android.support.design.widget.TabLayout
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentPagerAdapter
+import android.support.v7.app.AppCompatActivity
+import com.discair.intuigames.discair.fragment.FlightInformationsFragment
+import com.discair.intuigames.discair.fragment.PassengersListFragment
+import kotlinx.android.synthetic.main.activity_flight.*
 
 /**
  * @author RHA
  */
 class FlightActivity : AppCompatActivity() {
-    private val simpleDateFormat = SimpleDateFormat("hh:mm:ss")
+    private var airportTerminal: String = ""
+    private var airportName: String = ""
+    private var flightTimeTextView: String = ""
+    private var destinationTextView: String = ""
+    private var flightTextView: String = ""
+    private var boardingTextView: String = ""
+    private var statusTextView: String = ""
 
-    private lateinit var swipeToRefreshLayout: SwipeRefreshLayout
-
-    private lateinit var terminalValueTextView: TextView
-    private lateinit var valueFlightListLastRefreshTextView: TextView
-    private lateinit var airportNameTextView: TextView
-    private lateinit var clientReservedTextView: TextView
-    private lateinit var clientRegistrededTextView: TextView
-    private lateinit var clientEmbeddedTextView: TextView
-    private lateinit var availableSeatsPremiereTextView: TextView
-    private lateinit var availableSeatsBusinessTextView: TextView
-    private lateinit var availableSeatsEconomyTextView: TextView
-    private lateinit var customerSpecificityUmTextView: TextView
-    private lateinit var customerSpecificityPmrTextView: TextView
-    private lateinit var customerSpecificityBabiesTextView: TextView
-    private lateinit var gpConfirmedTextView: TextView
-    private lateinit var gpServiceSeatTextView: TextView
-    private lateinit var gpWaitingListTextView: TextView
-
-    private lateinit var airportTerminal: String
-    private lateinit var flightTime: String
-    private lateinit var destination: String
-    private lateinit var flight: String
-    private lateinit var boarding: String
-    private lateinit var status: String
+    /**
+     * The [android.support.v4.view.PagerAdapter] that will provide
+     * fragments for each of the sections. We use a
+     * {@link FragmentPagerAdapter} derivative, which will keep every
+     * loaded fragment in memory. If this becomes too memory intensive, it
+     * may be best to switch to a
+     * [android.support.v4.app.FragmentStatePagerAdapter].
+     */
+    private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flight)
 
-        swipeToRefreshLayout = findViewById(R.id.swipeToRefreshLayout)
-        terminalValueTextView = findViewById(R.id.terminalValueTextView)
-        valueFlightListLastRefreshTextView = findViewById(R.id.valueFlightListLastRefreshTextView)
-        airportNameTextView = findViewById(R.id.airportDepartureArrivalTextView)
-        clientReservedTextView = findViewById(R.id.totalClientsReservationTextView)
-        clientRegistrededTextView = findViewById(R.id.totalClientsRegistredTextView)
-        clientEmbeddedTextView = findViewById(R.id.totalClientsOnboardTextView)
-        availableSeatsPremiereTextView = findViewById(R.id.availableSeatsPremiereTextView)
-        availableSeatsBusinessTextView = findViewById(R.id.availableSeatsBusinessTextView)
-        availableSeatsEconomyTextView = findViewById(R.id.availableSeatsEconomyTextView)
-        customerSpecificityUmTextView = findViewById(R.id.umTextView)
-        customerSpecificityPmrTextView = findViewById(R.id.pmrTextView)
-        customerSpecificityBabiesTextView = findViewById(R.id.babiesTextView)
-        gpConfirmedTextView = findViewById(R.id.confirmedTextView)
-        gpServiceSeatTextView = findViewById(R.id.seatServicesTextView)
-        gpWaitingListTextView = findViewById(R.id.waitingListTextView)
+        //get intent extra
+        airportTerminal = intent.getStringExtra("airportTerminal").toString()
+        airportName = intent.getStringExtra("airportName").toString()
+        flightTimeTextView = intent.getStringExtra("flightTimeTextView").toString()
+        destinationTextView = intent.getStringExtra("destinationTextView").toString()
+        flightTextView = intent.getStringExtra("flightTextView").toString()
+        boardingTextView = intent.getStringExtra("boardingTextView").toString()
+        statusTextView = intent.getStringExtra("statusTextView").toString()
 
-        // Get intent extra
-        val intent = intent
-        if (intent != null) {
-            flightTime = intent.getStringExtra("flightTimeTextView").toString()
-            destination = intent.getStringExtra("destinationTextView").toString()
-            flight = intent.getStringExtra("flightTextView").toString()
-            boarding = intent.getStringExtra("boardingTextView").toString()
-            status = intent.getStringExtra("statusTextView").toString()
-            airportTerminal = intent.getStringExtra("airportTerminal").toString()
+        // Create the adapter that will return a fragment for each of the three
+        // primary sections of the activity.
+        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
 
-            refreshAndSetFlightInformations()
+        // Set up the ViewPager with the sections adapter.
+        container.adapter = mSectionsPagerAdapter
 
-        } else{
-            Toast.makeText(this@FlightActivity, "No data passed", Toast.LENGTH_SHORT).show()
-        }
-
-        // Setup refresh listener which triggers new data loading
-        swipeToRefreshLayout.setOnRefreshListener {
-            // Refresh the list here.
-            refreshAndSetFlightInformations()
-
-            // Make sure you call swipeContainer.setRefreshing(false)
-            // once the network request has completed successfully.
-            swipeToRefreshLayout.isRefreshing = false
-        }
+        container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(flightActivityTableLayout))
+        flightActivityTableLayout.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
     }
 
-    private fun refreshAndSetFlightInformations(){
-        val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
+    /**
+     * A [FragmentPagerAdapter] that returns a fragment corresponding to
+     * one of the sections/tabs/pages.
+     */
+    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-        mService.getFlightInformations(flightTime, destination, flight, boarding, status).enqueue(object : Callback<List<Airport>> {
-            override fun onFailure(call: Call<List<Airport>>, t: Throwable) {
-                Toast.makeText(this@FlightActivity, "Problème de connexion", Toast.LENGTH_SHORT).show()
-                t.printStackTrace()
+        override fun getItem(position: Int): Fragment? {
+            // getItem is called to instantiate the fragment for the given page.
+            val bundle = Bundle()
+            bundle.putString("airportTerminal", airportTerminal)
+            bundle.putString("airportName", airportName)
+            bundle.putString("flightTimeTextView", flightTimeTextView)
+            bundle.putString("destinationTextView", destinationTextView)
+            bundle.putString("flightTextView", flightTextView)
+            bundle.putString("boardingTextView", boardingTextView)
+            bundle.putString("statusTextView", statusTextView)
+
+            when (position) {
+                0 -> {
+                    val flightInformationsFragment = FlightInformationsFragment()
+                    flightInformationsFragment.arguments = bundle
+                    return flightInformationsFragment
+                }
+                1 -> {
+                    val passengersListFragment = PassengersListFragment()
+                    passengersListFragment.arguments = bundle
+                    return passengersListFragment
+                }
+                else -> return null
             }
+        }
 
-            override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) =
-                    if (response.isSuccessful) {
-                        var numberOfPaxRegistred: Int = 0
-                        var numberOfPaxOnboard: Int = 0
-                        var numberOfPaxReserved: Int = 0
-                        var numberOfGpConfirmed: Int = 0
-                        var numberOfGpSeatService: Int = 0
-                        var numberOfGpWaitingList: Int = 0
-                        var numberOfUm: Int = 0
-                        var numberOfPmr: Int = 0
-                        var numberOfBabies: Int = 0
-                        val airport : Airport = response.body()!![0]
-
-                        val passengerList: List<Passenger> = airport.flight!!.passenger!!
-                        for (passenger: Passenger in passengerList){
-                            when (passenger.pax!!.status){
-                                "reserved" -> {
-                                    numberOfPaxReserved += 1
-                                }
-                                "onboard" -> {
-                                    numberOfPaxOnboard += 1
-                                }
-                                "registred" -> {
-                                    numberOfPaxRegistred += 1
-                                }
-                            }
-
-                            when (passenger.pax!!.type){
-                                "um" -> {
-                                    numberOfUm += 1
-                                }
-                                "pmr" -> {
-                                    numberOfPmr += 1
-                                }
-                                "babies" -> {
-                                    numberOfBabies += 1
-                                }
-                            }
-
-                            when (passenger.gp!!.status){
-                                "confirmed" -> {
-                                    numberOfGpConfirmed += 1
-                                }
-                                "seat service" -> {
-                                    numberOfGpSeatService += 1
-                                }
-                                "waiting list" -> {
-                                    numberOfGpWaitingList += 1
-                                }
-                            }
-                        }
-
-                        val currentDate = simpleDateFormat.format(Date())
-
-                        terminalValueTextView.text = airportTerminal
-                        valueFlightListLastRefreshTextView.text = currentDate.toString()
-                        airportNameTextView.text = airport.name + " -> " + airport.flight!!.destination
-                        clientReservedTextView.text = "$numberOfPaxReserved reserved"
-                        clientRegistrededTextView.text = "$numberOfPaxRegistred registered"
-                        clientEmbeddedTextView.text = "$numberOfPaxOnboard on board"
-                        availableSeatsPremiereTextView.text = airport.flight!!.seats!!.premiere + " Premiere"
-                        availableSeatsBusinessTextView.text = airport.flight!!.seats!!.business + " Business"
-                        availableSeatsEconomyTextView.text = airport.flight!!.seats!!.eco + " Eco"
-                        customerSpecificityUmTextView.text = "$numberOfUm um"
-                        customerSpecificityPmrTextView.text = "$numberOfPmr pmr"
-                        customerSpecificityBabiesTextView.text = "$numberOfBabies babies"
-                        gpConfirmedTextView.text = "$numberOfGpConfirmed confirmed"
-                        gpServiceSeatTextView.text = "$numberOfGpSeatService seat service"
-                        gpWaitingListTextView.text = "$numberOfGpWaitingList waiting list"
-
-                    } else{
-                        Toast.makeText(this@FlightActivity, "Data didn't fetch", Toast.LENGTH_SHORT).show()
-                    }
-        })
+        override fun getCount(): Int {
+            // Show 2 total pages.
+            return 2
+        }
     }
 }
+
