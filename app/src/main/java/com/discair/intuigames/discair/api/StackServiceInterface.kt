@@ -31,6 +31,14 @@ interface StackServiceInterface {
      * @param airportName: airport name
      * @param airportTerminal: airport terminal
      */
+    @GET("airports")
+    fun getAirports(): Call<List<Airport>>
+
+    /**
+     * Get airport list by name and terminal
+     * @param airportName: airport name
+     * @param airportTerminal: airport terminal
+     */
     @GET("airports/{name}/{terminal}")
     fun getAirport(@Path("name") airportName: String, @Path("terminal") airportTerminal: String): Call<List<Airport>>
 

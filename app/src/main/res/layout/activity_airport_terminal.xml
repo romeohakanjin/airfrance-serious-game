@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".AirportTerminalActivity">
@@ -15,14 +16,12 @@
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="85dp" />
 
-    <EditText
-        android:id="@+id/airportNameEditText"
+    <Spinner
+        android:id="@+id/airportNameSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="104dp" />
+        android:textAlignment="center"
+        tools:text="Aeroport test"/>
 
     <TextView
         android:id="@+id/airportTerminalTextView"
@@ -30,16 +29,15 @@
         android:layout_height="wrap_content"
         android:text="@string/airport_terminal"
         tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="165dp" />
+        tools:layout_editor_absoluteY="165dp"
+        android:visibility="invisible"/>
 
-    <EditText
-        android:id="@+id/airportTerminalEditText"
+    <Spinner
+        android:id="@+id/airportTerminalSpinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="184dp" />
+        android:textAlignment="center"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/airportValidateButton"
