@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun redirectionHomePage(){
-        var intent = Intent(applicationContext, HomeActivity::class.java)
+        var intent = Intent(applicationContext, AirportTerminalActivity::class.java)
         startActivity(intent)
         finish()
     }
