@@ -20,4 +20,8 @@
     <string name="passengers">Passagers</string>
     <string name="passengerPersonnalInformations">Info. personnelles</string>
     <string name="passengerInformations">Info. passager</string>
+    <string name="app_first_mission">Mission 1</string>
+    <string name="app_sec_mission">Mission 2</string>
+    <string name="app_third_mission">Mission 3</string>
+    <string name="app_disc_mode">Mode découverte</string>
 </resources>
