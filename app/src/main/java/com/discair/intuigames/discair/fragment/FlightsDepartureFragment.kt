@@ -5,6 +5,8 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.support.v4.widget.SwipeRefreshLayout
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -22,6 +24,7 @@ import android.widget.TableLayout
 import android.widget.TextView
 import com.discair.intuigames.discair.FlightActivity
 import com.discair.intuigames.discair.R
+import kotlinx.android.synthetic.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -182,32 +185,39 @@ class FlightsDepartureFragment : Fragment(), SwipeRefreshLayout.OnRefreshListene
      */
     private fun setFirstRowLabels(): TableRow {
         val tableRow = TableRow(rootView.context)
-        tableRow.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
+        tableRow.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT)
+        val txtViewWidth = 200
 
         val flightTimeTextView = TextView(rootView.context)
         flightTimeTextView.text = getString(R.string.flight_time)
         flightTimeTextView.gravity = Gravity.CENTER
-        flightTimeTextView.setTypeface(flightTimeTextView.getTypeface(), Typeface.BOLD);
+        flightTimeTextView.width = txtViewWidth
+        flightTimeTextView.setTypeface(flightTimeTextView.getTypeface(), Typeface.BOLD)
+
 
         val destinationTextView = TextView(rootView.context)
         destinationTextView.text = getString(R.string.flight_destination)
         destinationTextView.gravity = Gravity.CENTER
-        destinationTextView.setTypeface(destinationTextView.getTypeface(), Typeface.BOLD);
+        destinationTextView.width = txtViewWidth
+        destinationTextView.setTypeface(destinationTextView.getTypeface(), Typeface.BOLD)
 
         val flightTextView = TextView(rootView.context)
         flightTextView.text = getString(R.string.flight_number)
         flightTextView.gravity = Gravity.CENTER
-        flightTextView.setTypeface(flightTextView.getTypeface(), Typeface.BOLD);
+        flightTextView.width = txtViewWidth
+        flightTextView.setTypeface(flightTextView.getTypeface(), Typeface.BOLD)
 
         val boardingTextView = TextView(rootView.context)
         boardingTextView.text =getString( R.string.flight_boarding)
         boardingTextView.gravity = Gravity.CENTER
-        boardingTextView.setTypeface(boardingTextView.getTypeface(), Typeface.BOLD);
+        boardingTextView.width = txtViewWidth
+        boardingTextView.setTypeface(boardingTextView.getTypeface(), Typeface.BOLD)
 
         val statusTextView = TextView(rootView.context)
         statusTextView.text = getString(R.string.flight_status)
         statusTextView.gravity = Gravity.CENTER
-        statusTextView.setTypeface(statusTextView.getTypeface(), Typeface.BOLD);
+        statusTextView.width = txtViewWidth
+        statusTextView.setTypeface(statusTextView.getTypeface(), Typeface.BOLD)
 
         tableRow.run {
             addView(flightTimeTextView)
@@ -219,4 +229,5 @@ class FlightsDepartureFragment : Fragment(), SwipeRefreshLayout.OnRefreshListene
 
         return tableRow
     }
+
 }
