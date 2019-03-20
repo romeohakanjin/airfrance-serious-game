@@ -2,6 +2,7 @@
 <android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeToRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -69,7 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flightListLastRefreshTextView"
+            app:layout_constraintTop_toBottomOf="@+id/flightTerminalTextView"
             tools:text="Airport 6 -> Kennedy airport" />
 
         <TextView
@@ -77,8 +78,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
             android:text="Réservés"
+            app:layout_constraintEnd_toStartOf="@+id/availableClientsRegistredTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clientTextView" />
 
@@ -87,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:text="Enregistrés"
             app:layout_constraintEnd_toStartOf="@+id/availableClientsOnboardTextView"
@@ -99,10 +102,12 @@
             android:id="@+id/availableClientsOnboardTextView"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:text="Embarqués"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/availableClientsRegistredTextView"
             app:layout_constraintTop_toBottomOf="@+id/clientTextView" />
 
         <TextView
@@ -124,9 +129,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
             android:layout_weight="1"
             android:text="10 business"
+            app:layout_constraintEnd_toStartOf="@+id/availableSeatsBusinessTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/availableSeatsTextView" />
 
@@ -134,11 +141,13 @@
             android:id="@+id/availableSeatsEconomyTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="150 economy"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/availableSeatsBusinessTextView"
             app:layout_constraintTop_toBottomOf="@+id/availableSeatsTextView" />
 
 
@@ -147,15 +156,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="Client à spécificité"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.474"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/availableSeatsTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/availableSeatsBusinessTextView" />
 
 
         <TextView
@@ -163,9 +171,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
             android:layout_weight="1"
             android:text="0 UM"
+            app:layout_constraintEnd_toStartOf="@+id/pmrTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -174,12 +184,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="0 PMR"
             app:layout_constraintEnd_toStartOf="@+id/babiesTextView"
-            app:layout_constraintHorizontal_bias="0.508"
             app:layout_constraintStart_toEndOf="@+id/umTextView"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -187,11 +196,13 @@
             android:id="@+id/babiesTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="0 Bébés"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pmrTextView"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
@@ -199,12 +210,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:text="GP"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pmrTextView" />
 
@@ -214,8 +224,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
             android:layout_weight="1"
             android:text="0 confirmé"
+            app:layout_constraintEnd_toStartOf="@+id/seatServicesTextView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/GPTextView" />
 
@@ -237,35 +249,46 @@
             android:id="@+id/waitingListTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="0 liste d'attente"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/seatServicesTextView"
             app:layout_constraintTop_toBottomOf="@+id/GPTextView" />
 
         <TextView
             android:id="@+id/totalClientsReservationTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="32dp"
             android:text="Disponible 150"
-            app:layout_constraintStart_toStartOf="@+id/availableClientsReservationTextView"
+            app:layout_constraintEnd_toStartOf="@+id/totalClientsRegistredTextView"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/availableClientsReservationTextView" />
 
         <TextView
             android:id="@+id/totalClientsRegistredTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:text="Disponible 150"
-            app:layout_constraintStart_toStartOf="@+id/availableClientsRegistredTextView"
+            app:layout_constraintEnd_toStartOf="@+id/totalClientsOnboardTextView"
+            app:layout_constraintStart_toEndOf="@+id/totalClientsReservationTextView"
             app:layout_constraintTop_toBottomOf="@+id/availableClientsRegistredTextView" />
 
         <TextView
             android:id="@+id/totalClientsOnboardTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="8dp"
             android:text="Disponible 150"
-            app:layout_constraintEnd_toEndOf="@+id/availableClientsOnboardTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/totalClientsRegistredTextView"
             app:layout_constraintTop_toBottomOf="@+id/availableClientsOnboardTextView" />
 
         <TextView
@@ -275,8 +298,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
             android:text="Clients"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/availableClientsRegistredTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
@@ -287,7 +312,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:text="14 Business"
             app:layout_constraintEnd_toStartOf="@+id/availableSeatsEconomyTextView"
