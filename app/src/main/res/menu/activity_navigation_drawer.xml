@@ -5,25 +5,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_mission"
+            android:id="@+id/nav_mission1"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Mission " />
+            android:title="@string/menu_item_mission_1" />
         <item
             android:id="@+id/nav_mission2"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Mission 2" />
+            android:title="@string/menu_item_mission_2" />
         <item
             android:id="@+id/nav_mission3"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Mission 3" />
+            android:icon="@drawable/ic_menu_send"
+            android:title="@string/menu_item_mission_3" />
     </group>
 
-    <item android:title="Account">
+    <item android:title="@string/menu_item_settings">
         <menu>
             <item
                 android:id="@+id/nav_deconnection"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Deconnection" />
+                android:icon="@drawable/ic_menu_manage"
+                android:title="@string/menu_item_deconnection" />
         </menu>
     </item>
 

@@ -7,7 +7,6 @@ import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.Gravity
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
@@ -97,7 +96,7 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
         getAeroportsNameList()
 
 
-        nav_view.setNavigationItemSelectedListener(this)
+        navigationView.setNavigationItemSelectedListener(this)
     }
 
     fun getAeroportsNameList(){
@@ -135,7 +134,7 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_mission -> {
+            R.id.nav_mission1 -> {
 
             }
             R.id.nav_mission2 -> {
