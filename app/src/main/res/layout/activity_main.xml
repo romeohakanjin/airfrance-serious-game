@@ -1,30 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <EditText
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/regitrationNumberTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:id="@+id/connection_registration_number_edittext"
-        android:hint="@string/connection_registration_number"/>
+        android:text="@string/connection_registration_number"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="85dp" />
 
     <EditText
+        android:id="@+id/connection_registration_number_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/passwordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/connection_password"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="85dp" />
+
+    <EditText
+        android:id="@+id/connection_password_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:id="@+id/connection_password_edittext"
-        android:hint="@string/connection_password"/>
+        android:inputType="number" />
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/connection_login_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/connection_login"
-        android:id="@+id/connection_login_button" />
-
+        android:text="@string/connection_login" />
 </LinearLayout>

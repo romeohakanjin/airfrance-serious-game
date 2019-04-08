@@ -15,7 +15,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-
 /**
  * @author RHA
  */
@@ -58,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+
     }
 
     fun checkIdentifiants(registrationNumber: Int, password: Int){

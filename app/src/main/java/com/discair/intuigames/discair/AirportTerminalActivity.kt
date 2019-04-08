@@ -3,21 +3,28 @@ package com.discair.intuigames.discair
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
+import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import com.discair.intuigames.discair.api.RetrofitClient
 import com.discair.intuigames.discair.api.StackServiceInterface
 import com.discair.intuigames.discair.api.airports.Airport
-import com.discair.intuigames.discair.api.airports.Terminal
+import com.discair.intuigames.discair.session.SessionManager
+import kotlinx.android.synthetic.main.activity_airport_terminal.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlinx.android.synthetic.main.activity_airport_terminal.*
 
 /**
  * @author RHA
  */
-class AirportTerminalActivity : AppCompatActivity() {
+class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    lateinit var sessionManager: SessionManager
     lateinit var airportNameSpinner: Spinner
     lateinit var airportTerminalSpinner: Spinner
     lateinit var airportValidateButton: Button
@@ -29,6 +36,14 @@ class AirportTerminalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_airport_terminal)
 
+        sessionManager = SessionManager(applicationContext)
+
+        val drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
+
+        fab.setOnClickListener { view ->
+            drawerLayout.openDrawer(Gravity.START)
+        }
+
         airportNameSpinner = findViewById(R.id.airportNameSpinner)
         airportTerminalSpinner = findViewById(R.id.airportTerminalSpinner)
         airportValidateButton = findViewById(R.id.airportValidateButton)
@@ -37,7 +52,7 @@ class AirportTerminalActivity : AppCompatActivity() {
         airportValidateButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 try {
-                    // get the informations from spinners component
+                    // get the information from spinners component
                     airportName = airportNameSpinner.selectedItem.toString()
                     airportTerminal = airportTerminalSpinner.selectedItem.toString()
 
@@ -80,6 +95,9 @@ class AirportTerminalActivity : AppCompatActivity() {
         }
 
         getAeroportsNameList()
+
+
+        nav_view.setNavigationItemSelectedListener(this)
     }
 
     fun getAeroportsNameList(){
@@ -112,5 +130,27 @@ class AirportTerminalActivity : AppCompatActivity() {
                     Toast.makeText(this@AirportTerminalActivity, "Data didn't fetch", Toast.LENGTH_SHORT).show()
                 }
         })
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        when (item.itemId) {
+            R.id.nav_mission -> {
+
+            }
+            R.id.nav_mission2 -> {
+
+            }
+            R.id.nav_mission3 -> {
+
+            }
+            R.id.nav_deconnection -> {
+                System.out.println("dfs")
+                sessionManager.logoutUser()
+            }
+        }
+
+        drawer_layout.closeDrawer(GravityCompat.START)
+        return true
     }
 }

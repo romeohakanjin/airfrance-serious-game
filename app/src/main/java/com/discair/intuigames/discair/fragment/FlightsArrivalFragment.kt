@@ -154,7 +154,7 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
                                 intent.putExtra("boardingTextView", boardingTextView.text)
                                 intent.putExtra("statusTextView", statusTextView.text)
                                 intent.putExtra("airportTerminal", airportTerminal)
-                                intent.putExtra("airportTerminal", airportTerminal)
+                                intent.putExtra("airportName", airportName)
 
                                 // start next activity
                                 startActivity(intent)
