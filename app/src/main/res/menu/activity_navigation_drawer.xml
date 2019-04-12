@@ -7,15 +7,7 @@
         <item
             android:id="@+id/nav_mission1"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_item_mission_1" />
-        <item
-            android:id="@+id/nav_mission2"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_item_mission_2" />
-        <item
-            android:id="@+id/nav_mission3"
-            android:icon="@drawable/ic_menu_send"
-            android:title="@string/menu_item_mission_3" />
+            android:title="@string/menu_item_missions" />
     </group>
 
     <item android:title="@string/menu_item_settings">

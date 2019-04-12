@@ -1,64 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MissionsActivity">
+    >
 
-    <Button
-        android:id="@+id/btnMission1"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="260dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/app_first_mission"
-        app:layout_constraintBottom_toTopOf="@+id/btnMission2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-    <Button
-        android:id="@+id/btnMission2"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/app_sec_mission"
-        app:layout_constraintBottom_toTopOf="@+id/btnMission3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMission1" />
 
-    <Button
-        android:id="@+id/btnMission3"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginBottom="9dp"
-        android:text="@string/app_third_mission"
-        app:layout_constraintBottom_toTopOf="@+id/btnFreeMode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnMission2" />
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
 
-    <Button
-        android:id="@+id/btnFreeMode"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="125dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="126dp"
-        android:layout_marginBottom="178dp"
-        android:text="@string/app_disc_mode"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-</android.support.constraint.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".MissionsActivity">
+
+            <Button
+                android:id="@+id/btnMission1"
+                android:layout_width="160dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginEnd="126dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/app_first_mission"
+                app:layout_constraintBottom_toTopOf="@+id/btnMission2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:layout_constraintVertical_chainStyle="spread_inside" />
+
+            <Button
+                android:id="@+id/btnMission2"
+                android:layout_width="160dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="126dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/app_sec_mission"
+                app:layout_constraintBottom_toTopOf="@+id/btnMission3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMission1" />
+
+            <Button
+                android:id="@+id/btnMission3"
+                android:layout_width="160dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="126dp"
+                android:layout_marginBottom="9dp"
+                android:text="@string/app_third_mission"
+                app:layout_constraintBottom_toTopOf="@+id/btnFreeMode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMission2" />
+
+            <Button
+                android:id="@+id/btnFreeMode"
+                android:layout_width="160dp"
+                android:layout_height="65dp"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="126dp"
+                android:layout_marginBottom="178dp"
+                android:text="@string/app_disc_mode"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>

@@ -35,9 +35,10 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_airport_terminal)
 
+
         sessionManager = SessionManager(applicationContext)
 
-        val drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
         fab.setOnClickListener { view ->
             drawerLayout.openDrawer(Gravity.START)
@@ -85,7 +86,7 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
                 // Application of the Array to the Spinner
                 val spinnerArrayAdapter = ArrayAdapter<String>(this@AirportTerminalActivity, android.R.layout.simple_spinner_item, airportTerminalsArray)
                 spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
-                airportTerminalSpinner.setAdapter(spinnerArrayAdapter)
+                airportTerminalSpinner.adapter = spinnerArrayAdapter
 
                 airportTerminalSpinner.visibility = View.VISIBLE
                 airportTerminalTextView.visibility = View.VISIBLE
@@ -137,12 +138,13 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
             R.id.nav_mission1 -> {
 
             }
+            /*
             R.id.nav_mission2 -> {
 
             }
             R.id.nav_mission3 -> {
 
-            }
+            }*/
             R.id.nav_deconnection -> {
                 System.out.println("dfs")
                 sessionManager.logoutUser()
