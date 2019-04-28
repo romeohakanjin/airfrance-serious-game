@@ -30,11 +30,13 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
     lateinit var airportsList : List<Airport>
     var airportName: String = ""
     var airportTerminal: String = ""
+    var missionNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_airport_terminal)
 
+        missionNumber = intent.getIntExtra("missionNumber", 0)
         sessionManager = SessionManager(applicationContext)
 
         val drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
@@ -144,8 +146,9 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
 
             }
             R.id.nav_deconnection -> {
-                System.out.println("dfs")
-                sessionManager.logoutUser()
+                var intent = Intent(applicationContext, MissionCompletedActivity::class.java)
+                startActivity(intent)
+                finish()
             }
         }
 
