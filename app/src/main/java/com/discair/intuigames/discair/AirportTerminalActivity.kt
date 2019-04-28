@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import android.support.v7.widget.Toolbar
 import com.discair.intuigames.discair.api.RetrofitClient
 import com.discair.intuigames.discair.api.StackServiceInterface
 import com.discair.intuigames.discair.api.airports.Airport
@@ -37,13 +38,18 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
         setContentView(R.layout.activity_airport_terminal)
 
         missionNumber = intent.getIntExtra("missionNumber", 0)
+
         sessionManager = SessionManager(applicationContext)
 
-        val drawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
 
         fab.setOnClickListener { view ->
             drawerLayout.openDrawer(Gravity.START)
         }
+
+        val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        setSupportActionBar(toolbar)
+
 
         airportNameSpinner = findViewById(R.id.airportNameSpinner)
         airportTerminalSpinner = findViewById(R.id.airportTerminalSpinner)
@@ -53,18 +59,24 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
         airportValidateButton.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 try {
-                    // get the information from spinners component
-                    airportName = airportNameSpinner.selectedItem.toString()
-                    airportTerminal = airportTerminalSpinner.selectedItem.toString()
+                    if(2 != missionNumber) {
+                        // get the information from spinners component
+                        airportName = airportNameSpinner.selectedItem.toString()
+                        airportTerminal = airportTerminalSpinner.selectedItem.toString()
 
-                    // To pass data to next activity
-                    // change view and pass parameters
-                    val intent = Intent(this@AirportTerminalActivity, FlightsActivity::class.java)
-                    intent.putExtra("airportName", airportName)
-                    intent.putExtra("airportTerminal", airportTerminal)
+                        // To pass data to next activity
+                        // change view and pass parameters
+                        val intent = Intent(this@AirportTerminalActivity, FlightsActivity::class.java)
+                        intent.putExtra("airportName", airportName)
+                        intent.putExtra("airportTerminal", airportTerminal)
 
-                    // start next activity
-                    startActivity(intent)
+                        // start next activity
+                        startActivity(intent)
+                    } else {
+                        var intent = Intent(applicationContext, MissionCompletedActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 } catch (exception: Exception) {
                     exception.printStackTrace()
                     Toast.makeText(this@AirportTerminalActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
@@ -87,7 +99,7 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
                 // Application of the Array to the Spinner
                 val spinnerArrayAdapter = ArrayAdapter<String>(this@AirportTerminalActivity, android.R.layout.simple_spinner_item, airportTerminalsArray)
                 spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) // The drop down view
-                airportTerminalSpinner.setAdapter(spinnerArrayAdapter)
+                airportTerminalSpinner.adapter = spinnerArrayAdapter
 
                 airportTerminalSpinner.visibility = View.VISIBLE
                 airportTerminalTextView.visibility = View.VISIBLE
@@ -139,12 +151,13 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
             R.id.nav_mission1 -> {
 
             }
+            /*
             R.id.nav_mission2 -> {
 
             }
             R.id.nav_mission3 -> {
 
-            }
+            }*/
             R.id.nav_deconnection -> {
                 var intent = Intent(applicationContext, MissionCompletedActivity::class.java)
                 startActivity(intent)

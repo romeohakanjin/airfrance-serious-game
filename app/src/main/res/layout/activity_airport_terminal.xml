@@ -7,12 +7,25 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:context=".AirportTerminalActivity">
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/side_nav_bar"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/colorWhite"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
 
         <TextView
             android:id="@+id/airportNameTextView"
@@ -50,17 +63,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_validate"
+            android:textColor="@color/colorWhite"
             tools:layout_editor_absoluteX="148dp"
-            tools:layout_editor_absoluteY="239dp" />
+            tools:layout_editor_absoluteY="239dp"
+            android:background="@drawable/round_button"
+            />
+
+        </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
+            android:layout_marginTop="200dp"
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
             app:srcCompat="@android:drawable/ic_dialog_dialer" />
-    </LinearLayout>
+
+    </RelativeLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigationView"

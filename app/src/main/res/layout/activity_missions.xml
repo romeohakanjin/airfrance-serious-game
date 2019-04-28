@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,15 +8,18 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="222dp"
-        android:layout_gravity="top"
-        app:srcCompat="@drawable/croquis_a380" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/side_nav_bar"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <Button
         android:id="@+id/btnMission1"
+        android:layout_marginTop="20dp"
         android:layout_width="160dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
@@ -41,4 +45,11 @@
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:text="@string/app_disc_mode" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="222dp"
+        android:layout_gravity="top"
+        app:srcCompat="@drawable/croquis_a380" />
 </LinearLayout>
