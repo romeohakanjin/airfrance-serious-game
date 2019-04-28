@@ -10,6 +10,7 @@ import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import android.support.v7.widget.Toolbar
 import com.discair.intuigames.discair.api.RetrofitClient
 import com.discair.intuigames.discair.api.StackServiceInterface
 import com.discair.intuigames.discair.api.airports.Airport
@@ -43,6 +44,10 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
         fab.setOnClickListener { view ->
             drawerLayout.openDrawer(Gravity.START)
         }
+
+        val toolbar = findViewById<Toolbar>(R.id.my_toolbar)
+        setSupportActionBar(toolbar)
+
 
         airportNameSpinner = findViewById(R.id.airportNameSpinner)
         airportTerminalSpinner = findViewById(R.id.airportTerminalSpinner)

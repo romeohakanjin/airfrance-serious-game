@@ -70,12 +70,13 @@
                 android:layout_width="160dp"
                 android:layout_height="65dp"
                 android:layout_marginStart="125dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="9dp"
                 android:layout_marginEnd="126dp"
                 android:layout_marginBottom="178dp"
                 android:text="@string/app_disc_mode"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMission3" />
         </android.support.constraint.ConstraintLayout>
 </android.support.design.widget.CoordinatorLayout>
