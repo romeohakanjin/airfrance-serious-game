@@ -144,7 +144,6 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
 
             }
             R.id.nav_deconnection -> {
-                System.out.println("dfs")
                 sessionManager.logoutUser()
             }
         }

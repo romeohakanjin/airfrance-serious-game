@@ -30,7 +30,6 @@ class PassengerActivity : AppCompatActivity() {
 
         //get intent extra
         referenceNumber = intent.getIntExtra("referenceNumber", 0).toString()
-
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
@@ -55,14 +54,14 @@ class PassengerActivity : AppCompatActivity() {
 
             when (position) {
                 0 -> {
-                    val passengerInfoFragment = PassengerInfoFragment()
-                    passengerInfoFragment.arguments = bundle
-                    return passengerInfoFragment
-                }
-                1 -> {
                     val personalInfoFragment = PersonalInfoFragment()
                     personalInfoFragment.arguments = bundle
                     return personalInfoFragment
+                }
+                1 -> {
+                    val passengerInfoFragment = PassengerInfoFragment()
+                    passengerInfoFragment.arguments = bundle
+                    return passengerInfoFragment
                 }
                 else -> return null
             }
