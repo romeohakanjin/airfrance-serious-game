@@ -5,95 +5,89 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
-import com.discair.intuigames.discair.api.RetrofitClient
-import com.discair.intuigames.discair.api.StackServiceInterface
-import com.discair.intuigames.discair.api.agents.Agents
-import com.discair.intuigames.discair.session.SessionManager
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-/**
- * @author RHA
- */
 class MainActivity : AppCompatActivity() {
-    lateinit var sessionManager: SessionManager
-    lateinit var registrationNumberEditText: EditText
-    lateinit var passwordEditText: EditText
-    lateinit var loginButton: Button
-    var registrationNumber: Int = 0
-    var password: Int = 0
+    lateinit var mission1Button: Button
+    lateinit var mission2Button: Button
+    lateinit var mission3Button: Button
+    lateinit var missionFreeModeButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_missions)
 
-        // initialize Session Manager
-        sessionManager = SessionManager(applicationContext)
+        mission1Button = findViewById(R.id.btnMission1)
+        mission2Button = findViewById(R.id.btnMission2)
+        mission3Button = findViewById(R.id.btnMission3)
+        missionFreeModeButton = findViewById(R.id.btnFreeMode)
 
-        if (sessionManager.isLoggedIn()){
-           // redirection to home view
-            redirectionHomePage()
-        } else {
-            // initialize view components
-            registrationNumberEditText = findViewById(R.id.connection_registration_number_edittext)
-            passwordEditText = findViewById(R.id.connection_password_edittext)
-            loginButton = findViewById(R.id.connection_login_button)
+        // mission 1 listener
+        mission1Button.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                try {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
 
-            // login button listener
-            loginButton.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-                    try {
-                        // verification on the connection information
-                        registrationNumber = registrationNumberEditText.text.toString().toInt()
-                        password = passwordEditText.text.toString().toInt()
+                    // To pass data to next activity
+                    intent.putExtra("missionNumber", 1)
 
-                        checkIdentifiants(registrationNumber, password)
-                    } catch (exception: Exception) {
-                        Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
-                    }
+                    // start next activity
+                    startActivity(intent)
+                } catch (exception: Exception) {
+                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
                 }
-            })
-        }
-
-    }
-
-    fun checkIdentifiants(registrationNumber: Int, password: Int){
-        val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
-
-        mService.getAgent(registrationNumber, password).enqueue(object : Callback<List<Agents>> {
-            override fun onResponse(call: Call<List<Agents>>, response: Response<List<Agents>>) {
-                if (response.isSuccessful()) {
-                    val agents : List<Agents> = response.body()!!
-                    if (agents.size == 1) {
-                        if (agents[0].registrationNumber == registrationNumber && agents[0].password == password){
-                            validateConnection()
-                        }
-                    } else{
-                        Toast.makeText(this@MainActivity, "Informations incorrectes !", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<List<Agents>>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Problème de connexion", Toast.LENGTH_SHORT).show()
             }
         })
-    }
 
-    fun validateConnection(){
-        // connection information validate
-        sessionManager.createLoginSession(registrationNumber, password)
+        // mission 2 listener
+        mission2Button.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                try {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
 
-        // redirection on home page
-        redirectionHomePage()
-    }
+                    // To pass data to next activity
+                    intent.putExtra("missionNumber", 2)
 
-    fun redirectionHomePage(){
-        var intent = Intent(applicationContext, AirportTerminalActivity::class.java)
-        startActivity(intent)
-        finish()
+                    // start next activity
+                    startActivity(intent)
+                } catch (exception: Exception) {
+                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        // mission 3 listener
+        mission3Button.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                try {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+
+                    // To pass data to next activity
+                    intent.putExtra("missionNumber", 3)
+
+                    // start next activity
+                    startActivity(intent)
+                } catch (exception: Exception) {
+                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+        // mission free mode
+        missionFreeModeButton.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                try {
+                    val intent = Intent(applicationContext, LoginActivity::class.java)
+
+                    // To pass data to next activity
+                    intent.putExtra("missionNumber", 4)
+
+                    // start next activity
+                    startActivity(intent)
+                } catch (exception: Exception) {
+                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
     }
 }
