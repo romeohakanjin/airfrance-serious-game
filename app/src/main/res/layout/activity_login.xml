@@ -1,46 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
+    android:background="@drawable/login_gradient"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/regitrationNumberTextView"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/connection_registration_number"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="85dp" />
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="logo"
+        app:srcCompat="@drawable/af_logo" />
 
-    <EditText
-        android:id="@+id/connection_registration_number_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
+        <EditText
+            android:id="@+id/connection_registration_number_edittext"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteLignt"
+            android:hint="@string/connection_registration_number"
+            android:autofillHints="@string/connection_registration_number"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:inputType="number"
+            android:background="@drawable/login_textedit"/>
 
-    <TextView
-        android:id="@+id/passwordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/connection_password"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="85dp" />
+        <EditText
+            android:id="@+id/connection_password_edittext"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:textColor="@color/colorWhite"
+            android:textColorHint="@color/colorWhiteLignt"
+            android:hint="@string/connection_password"
+            android:autofillHints="@string/connection_password"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/connection_registration_number_edittext"
+            android:inputType="numberPassword"
+            android:background="@drawable/login_textedit"/>
 
-    <EditText
-        android:id="@+id/connection_password_edittext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/connection_login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/connection_login" />
-</LinearLayout>
+        <Button
+            android:id="@+id/connection_login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:textColor="@color/colorWhite"
+            android:text="@string/connection_login"
+            android:layout_marginTop="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/connection_password_edittext" />
+</RelativeLayout>
