@@ -67,6 +67,7 @@
             tools:layout_editor_absoluteX="148dp"
             tools:layout_editor_absoluteY="239dp"
             android:background="@drawable/round_button"
+            android:layout_marginTop="15dp"
             />
 
         </LinearLayout>
