@@ -38,7 +38,7 @@ class PassengerActivity : AppCompatActivity() {
 
         //get intent extra
         referenceNumber = intent.getIntExtra("referenceNumber", 0).toString()
-        this.getPassengerInfoByRefNumber(referenceNumber)
+        getPassengerInfoByRefNumber(referenceNumber)
     }
 
     /**

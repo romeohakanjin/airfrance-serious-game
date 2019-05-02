@@ -57,6 +57,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".SearchActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MissionCompletedActivity"
             android:theme="@style/AppTheme">
             <intent-filter>

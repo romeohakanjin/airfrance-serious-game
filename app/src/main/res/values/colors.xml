@@ -10,5 +10,6 @@
     <color name="colorRed">#d30e18</color>
     <color name="colorLightR">#d82750</color>
     <color name="colorOrange">#dd5500</color>
+    <color name="colorWhiteLignt">#c3c3c3</color>
     <color name="colorWhite">#ffffff</color>
 </resources>
