@@ -24,14 +24,14 @@ import retrofit2.Response
  * @author RHA
  */
 class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-    lateinit var sessionManager: SessionManager
-    lateinit var airportNameSpinner: Spinner
-    lateinit var airportTerminalSpinner: Spinner
-    lateinit var airportValidateButton: Button
-    lateinit var airportsList : List<Airport>
-    var airportName: String = ""
-    var airportTerminal: String = ""
-    var missionNumber: Int = 0
+    private lateinit var sessionManager: SessionManager
+    private lateinit var airportNameSpinner: Spinner
+    private lateinit var airportTerminalSpinner: Spinner
+    private lateinit var airportValidateButton: Button
+    private lateinit var airportsList : List<Airport>
+    private var airportName: String = ""
+    private var airportTerminal: String = ""
+    private var missionNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +69,7 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
                         val intent = Intent(this@AirportTerminalActivity, FlightsActivity::class.java)
                         intent.putExtra("airportName", airportName)
                         intent.putExtra("airportTerminal", airportTerminal)
+                        intent.putExtra("missionNumber", missionNumber)
 
                         // start next activity
                         startActivity(intent)
@@ -113,7 +114,7 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
         navigationView.setNavigationItemSelectedListener(this)
     }
 
-    fun getAeroportsNameList(){
+    private fun getAeroportsNameList(){
         val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
 
         mService.getAirports().enqueue(object : Callback<List<Airport>> {

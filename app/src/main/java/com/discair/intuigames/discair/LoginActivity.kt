@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.discair.intuigames.discair.api.RetrofitClient
 import com.discair.intuigames.discair.api.StackServiceInterface
@@ -20,13 +19,13 @@ import retrofit2.Response
  * @author RHA
  */
 class LoginActivity : AppCompatActivity() {
-    lateinit var sessionManager: SessionManager
-    lateinit var registrationNumberEditText: EditText
-    lateinit var passwordEditText: EditText
-    lateinit var loginButton: Button
-    var missionNumber: Int = 0
-    var registrationNumber: Int = 0
-    var password: Int = 0
+    private lateinit var sessionManager: SessionManager
+    private lateinit var registrationNumberEditText: EditText
+    private lateinit var passwordEditText: EditText
+    private lateinit var loginButton: Button
+    private var missionNumber: Int = 0
+    private var registrationNumber: Int = 0
+    private var password: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,17 +74,7 @@ class LoginActivity : AppCompatActivity() {
                         if (agents[0].registrationNumber == registrationNumber && agents[0].password == password){
                             if (missionNumber == 1){
                                 validateConnection(true)
-                            }
-
-                            if (missionNumber == 2){
-                                validateConnection(false)
-                            }
-
-                            if (missionNumber == 3){
-                                validateConnection(false)
-                            }
-
-                            if (missionNumber == 4){
+                            } else {
                                 validateConnection(false)
                             }
                         }

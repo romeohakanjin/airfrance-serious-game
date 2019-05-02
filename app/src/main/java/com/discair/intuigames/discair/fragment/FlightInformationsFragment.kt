@@ -51,6 +51,7 @@ class FlightInformationsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListe
     private lateinit var flight: String
     private lateinit var boarding: String
     private lateinit var status: String
+    private var missionNumber: Int = 0
 
     private lateinit var rootView: View
 
@@ -101,6 +102,7 @@ class FlightInformationsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListe
             status = intent.getString("statusTextView").toString()
             airportTerminal = intent.getString("airportTerminal").toString()
             airportName = intent.getString("airportName").toString()
+            missionNumber = intent.getInt("missionNumber").toString().toInt()
 
             refreshAndSetFlightInformations()
 

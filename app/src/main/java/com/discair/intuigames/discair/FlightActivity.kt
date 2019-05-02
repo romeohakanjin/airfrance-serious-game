@@ -21,6 +21,7 @@ class FlightActivity : AppCompatActivity() {
     private var flightTextView: String = ""
     private var boardingTextView: String = ""
     private var statusTextView: String = ""
+    private var missionNumber: Int = 0
 
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
@@ -44,6 +45,7 @@ class FlightActivity : AppCompatActivity() {
         flightTextView = intent.getStringExtra("flightTextView").toString()
         boardingTextView = intent.getStringExtra("boardingTextView").toString()
         statusTextView = intent.getStringExtra("statusTextView").toString()
+        missionNumber = intent.getIntExtra("missionNumber", 0)
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -72,6 +74,7 @@ class FlightActivity : AppCompatActivity() {
             bundle.putString("flightTextView", flightTextView)
             bundle.putString("boardingTextView", boardingTextView)
             bundle.putString("statusTextView", statusTextView)
+            bundle.putInt("missionNumber", missionNumber)
 
             when (position) {
                 0 -> {
