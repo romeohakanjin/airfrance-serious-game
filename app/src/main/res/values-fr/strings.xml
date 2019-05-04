@@ -8,7 +8,6 @@
     <string name="flight_departure">Départ</string>
     <string name="flight_arrival">Arrivé</string>
     <string name="flight_time">Heure de vol</string>
-    <string name="flight_status">Statut</string>
     <string name="flight_boarding">Enregistrement</string>
     <string name="flight_destination">Destination</string>
     <string name="flight_number">Vol</string>
@@ -32,4 +31,23 @@
     <string name="menu_item_settings">Paramètres</string>
     <string name="menu_item_mission_1">Mission 1</string>
     <string name="app_name" translatable="false">Disc Air</string>
+    <string name="ok_string">Ok</string>
+    <string name="end_first_mission_title">Succès d\'authentification</string>
+    <string name="end_first_mission_message">Succès de l\'authentification, fin de la première mission.</string>
+    <string name="connection_failure">Problème de connexion</string>
+    <string name="incorrect_information">Informations incorrectes</string>
+    <string name="mission_information">Information mission</string>
+    <string name="first_mission_tips">Pour cette mission, tentez de vous connecter avec votre matricule et votre mot de passe habituel.</string>
+    <string name="flight_status">Status</string>
+    <string name="end_second_mission_message">Choix d\'aéroport et de terminal correct, fin de la seconde mission.</string>
+    <string name="second_mission_tips">Pour cette mission, veuillez sélectionner un aéroport et un terminal pour lequel vous souhaitez plus d\'informations.</string>
+    <string name="end_second_mission_title">Succès du choix de l\'aéroport et du terminal</string>
+    <string name="click_broken">Clique impossible</string>
+    <string name="third_mission_tips">Pour la troisième mission, essayez de trouver la vue de détails d\'un passager.</string>
+    <string name="internal_error">Erreur interne</string>
+    <string name="no_passengers">Aucun passager</string>
+    <string name="try_again_later">Veuillez réessayer plus tard</string>
+    <string name="end_third_mission_title">Succès d\'accès aux informations d\'un passager</string>
+    <string name="end_third_mission_message">Viewing passenger information success, end of the third mission, end of the third mission.</string>
+    <string name="error">Erreur</string>
 </resources>

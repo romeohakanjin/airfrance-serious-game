@@ -23,71 +23,63 @@ class MainActivity : AppCompatActivity() {
         missionFreeModeButton = findViewById(R.id.btnFreeMode)
 
         // mission 1 listener
-        mission1Button.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                try {
-                    val intent = Intent(applicationContext, LoginActivity::class.java)
+        mission1Button.setOnClickListener {
+            try {
+                val intent = Intent(applicationContext, LoginActivity::class.java)
 
-                    // To pass data to next activity
-                    intent.putExtra("missionNumber", 1)
+                // To pass data to next activity
+                intent.putExtra("missionNumber", 1)
 
-                    // start next activity
-                    startActivity(intent)
-                } catch (exception: Exception) {
-                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
-                }
+                // start next activity
+                startActivity(intent)
+            } catch (exception: Exception) {
+                Toast.makeText(this@MainActivity, R.string.incorrect_information, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
 
         // mission 2 listener
-        mission2Button.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                try {
-                    val intent = Intent(applicationContext, LoginActivity::class.java)
+        mission2Button.setOnClickListener {
+            try {
+                val intent = Intent(applicationContext, LoginActivity::class.java)
 
-                    // To pass data to next activity
-                    intent.putExtra("missionNumber", 2)
+                // To pass data to next activity
+                intent.putExtra("missionNumber", 2)
 
-                    // start next activity
-                    startActivity(intent)
-                } catch (exception: Exception) {
-                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
-                }
+                // start next activity
+                startActivity(intent)
+            } catch (exception: Exception) {
+                Toast.makeText(this@MainActivity, R.string.incorrect_information, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
 
         // mission 3 listener
-        mission3Button.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                try {
-                    val intent = Intent(applicationContext, LoginActivity::class.java)
+        mission3Button.setOnClickListener {
+            try {
+                val intent = Intent(applicationContext, LoginActivity::class.java)
 
-                    // To pass data to next activity
-                    intent.putExtra("missionNumber", 3)
+                // To pass data to next activity
+                intent.putExtra("missionNumber", 3)
 
-                    // start next activity
-                    startActivity(intent)
-                } catch (exception: Exception) {
-                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
-                }
+                // start next activity
+                startActivity(intent)
+            } catch (exception: Exception) {
+                Toast.makeText(this@MainActivity, R.string.incorrect_information, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
 
         // mission free mode
-        missionFreeModeButton.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                try {
-                    val intent = Intent(applicationContext, LoginActivity::class.java)
+        missionFreeModeButton.setOnClickListener {
+            try {
+                val intent = Intent(applicationContext, LoginActivity::class.java)
 
-                    // To pass data to next activity
-                    intent.putExtra("missionNumber", 4)
+                // To pass data to next activity
+                intent.putExtra("missionNumber", 4)
 
-                    // start next activity
-                    startActivity(intent)
-                } catch (exception: Exception) {
-                    Toast.makeText(this@MainActivity, "Informations incorrectes", Toast.LENGTH_SHORT).show()
-                }
+                // start next activity
+                startActivity(intent)
+            } catch (exception: Exception) {
+                Toast.makeText(this@MainActivity, R.string.incorrect_information, Toast.LENGTH_SHORT).show()
             }
-        })
+        }
     }
 }

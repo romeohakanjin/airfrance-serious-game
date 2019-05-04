@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import com.discair.intuigames.discair.fragment.FlightInformationsFragment
 import com.discair.intuigames.discair.fragment.PassengersListFragment
@@ -22,7 +23,6 @@ class FlightActivity : AppCompatActivity() {
     private var boardingTextView: String = ""
     private var statusTextView: String = ""
     private var missionNumber: Int = 0
-
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
      * fragments for each of the sections. We use a

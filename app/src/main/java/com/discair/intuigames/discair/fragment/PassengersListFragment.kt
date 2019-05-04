@@ -18,8 +18,6 @@ import com.discair.intuigames.discair.api.airports.Passenger
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.SimpleDateFormat
-import java.util.*
 
 /**
  * @author RHA
@@ -32,6 +30,7 @@ class PassengersListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
     private var numFlight: Int = 0
     private var passengerList: List<Passenger>? = null
     private var errorMessage: String = ""
+    private var missionNumber: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -41,6 +40,7 @@ class PassengersListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
         val intent = this.arguments
         if (intent != null) {
             numFlight = intent.getString("flightTextView").toInt()
+            missionNumber = intent.getInt("missionNumber").toString().toInt()
             getPassengersByFlightNumber(numFlight)
         }
 
@@ -49,29 +49,28 @@ class PassengersListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
     }
 
     /**
-     * Récupère la liste des passagers grâce au numéro de vol
-     * Affiche les passagers dans la vue
+     * Get the list of passengers by flight number and print the passengers on the view
      */
-    fun getPassengersByFlightNumber(numFlight: Int){
+    private fun getPassengersByFlightNumber(numFlight: Int){
         val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
         mService.getPassengersByFLightNumber(numFlight).enqueue(object : Callback<List<Airport>> {
             override fun onResponse(call: Call<List<Airport>>, response: Response<List<Airport>>) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful) {
                     if (response.body()!!.size == 1){
                         val airport = response.body()!![0]
-                        val flight = airport.flight;
-                        if(flight!!.passenger!!.size >= 1){
-                            passengerList = flight!!.passenger!!
-                            if(passengerList!!.size != 0){
+                        val flight = airport.flight
+                        if(flight!!.passenger!!.isNotEmpty()){
+                            passengerList = flight.passenger!!
+                            if(passengerList!!.isNotEmpty()){
                                 val passengersTableLayout = rootView.findViewById(R.id.fragementPassengersTableLayout) as TableLayout
 
                                 for (pass in passengerList as List<Passenger>){
                                     val tableRowId = TextView.generateViewId()
 
                                     val row = TableRow(rootView.context)
-                                    val lp = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
+                                    val layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
                                     row.id = tableRowId
-                                    row.layoutParams=lp
+                                    row.layoutParams = layoutParams
 
                                     val refNumber = TextView(rootView.context)
                                     refNumber.tag = "refNumber"
@@ -101,41 +100,40 @@ class PassengersListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
                                         addView(mail)
                                     }
 
-                                    row.setOnClickListener(object : View.OnClickListener {
-                                        override fun onClick(v: View?) {
-                                            try {
-                                                val trow = v as TableRow
-                                                trow.getVirtualChildAt(trow.id)
-                                                val textView : TextView = trow.getChildAt(0) as TextView
-                                                val referenceNumber : Int = textView.text.toString().toInt()
+                                    row.setOnClickListener { v ->
+                                        try {
+                                            val trow = v as TableRow
+                                            trow.getVirtualChildAt(trow.id)
+                                            val textView : TextView = trow.getChildAt(0) as TextView
+                                            val referenceNumber : Int = textView.text.toString().toInt()
 
-                                                val intent = Intent(rootView.context, PassengerActivity::class.java)
-                                                intent.putExtra("referenceNumber", referenceNumber)
-                                                startActivityForResult(intent, 0)
-                                            } catch (exception: Exception) {
-                                                Toast.makeText(rootView.context, "Click Broken", Toast.LENGTH_SHORT).show()
-                                            }
+                                            val intent = Intent(rootView.context, PassengerActivity::class.java)
+                                            intent.putExtra("referenceNumber", referenceNumber)
+                                            intent.putExtra("missionNumber", missionNumber)
+                                            startActivityForResult(intent, 0)
+                                        } catch (exception: Exception) {
+                                            Toast.makeText(rootView.context, R.string.click_broken, Toast.LENGTH_SHORT).show()
                                         }
-                                    })
+                                    }
                                     passengersTableLayout.addView(row)
                                 }
                             }else{
-                                errorMessage = "Aucun passager"
+                                errorMessage = R.string.no_passengers.toString()
                                 displayMessage(errorMessage)
                             }
                         }
                     } else{
-                        errorMessage = "Aucun passager"
+                        errorMessage = R.string.no_passengers.toString()
                         displayMessage(errorMessage)
                     }
                 }else{
-                    errorMessage = "Erreur "+response.code()+" - "+response.message()+". Veuillez réessayer ultérieurement."
+                    errorMessage = R.string.error.toString()+ "" +response.code()+" - "+response.message()+"."+ R.string.try_again_later.toString() +"."
                     displayMessage(errorMessage)
                 }
             }
 
             override fun onFailure(call: Call<List<Airport>>, t: Throwable) {
-                errorMessage = "Erreur interne. Veuillez réessayer ultérieurement."
+                errorMessage = R.string.internal_error.toString() + "." + R.string.try_again_later.toString() + "."
                 displayMessage(errorMessage)
                 t.printStackTrace()
             }

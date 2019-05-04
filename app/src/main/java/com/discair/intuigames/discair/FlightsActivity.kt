@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
+import android.support.v7.app.AlertDialog
 import com.discair.intuigames.discair.fragment.FlightsArrivalFragment
 import com.discair.intuigames.discair.fragment.FlightsDepartureFragment
 
@@ -18,6 +19,8 @@ import kotlinx.android.synthetic.main.activity_flights.*
 class FlightsActivity : AppCompatActivity() {
     private var airportName: String = ""
     private var airportTerminal: String = ""
+    private var missionNumber: Int = 0
+    private lateinit var builder : AlertDialog.Builder
     /**
      * The [android.support.v4.view.PagerAdapter] that will provide
      * fragments for each of the sections. We use a
@@ -35,6 +38,9 @@ class FlightsActivity : AppCompatActivity() {
         //get intent extra
         airportName = intent.getStringExtra("airportName").toString()
         airportTerminal = intent.getStringExtra("airportTerminal").toString()
+        missionNumber = intent.getIntExtra("missionNumber", 0)
+
+        builder = AlertDialog.Builder(this@FlightsActivity)
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -45,6 +51,25 @@ class FlightsActivity : AppCompatActivity() {
 
         container.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(flightActivityTableLayout))
         flightActivityTableLayout.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
+
+        if (3 == missionNumber) {
+            // Set the alert dialog title
+            builder.setTitle(R.string.mission_information)
+
+            // Display a message on alert dialog
+            builder.setMessage(R.string.third_mission_tips)
+
+            // Set a positive button and its click listener on alert dialog
+            builder.setPositiveButton(R.string.ok_string) { _, _ ->
+                // do nothing
+            }
+
+            // Finally, make the alert dialog using builder
+            val dialog: AlertDialog = builder.create()
+
+            // Display the alert dialog on app interface
+            dialog.show()
+        }
     }
 
     /**
@@ -58,6 +83,7 @@ class FlightsActivity : AppCompatActivity() {
             val bundle = Bundle()
             bundle.putString("airportName", airportName)
             bundle.putString("airportTerminal", airportTerminal)
+            bundle.putInt("missionNumber", missionNumber)
 
             when (position) {
                 0 -> {

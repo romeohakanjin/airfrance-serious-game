@@ -43,6 +43,7 @@ class FlightsDepartureFragment : Fragment(), SwipeRefreshLayout.OnRefreshListene
 
     private lateinit var airportName: String
     private lateinit var airportTerminal: String
+    private var missionNumber: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_flights_departure, container, false)
@@ -80,6 +81,7 @@ class FlightsDepartureFragment : Fragment(), SwipeRefreshLayout.OnRefreshListene
         if (bundle != null) {
             airportName = bundle.getString("airportName").toString()
             airportTerminal = bundle.getString("airportTerminal").toString()
+            missionNumber = bundle.getInt("missionNumber", 0)
 
             val currentDate = simpleDateFormat.format(Date())
 
@@ -159,6 +161,7 @@ class FlightsDepartureFragment : Fragment(), SwipeRefreshLayout.OnRefreshListene
                                     intent.putExtra("statusTextView", statusTextView.text)
                                     intent.putExtra("airportTerminal", airportTerminal)
                                     intent.putExtra("airportName", airportName)
+                                    intent.putExtra("missionNumber", missionNumber)
 
                                     // start next activity
                                     startActivity(intent)

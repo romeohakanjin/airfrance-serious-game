@@ -13,7 +13,6 @@
     <string name="flight_destination">Destination</string>
     <string name="flight_number">Flight</string>
     <string name="flight_boarding">Boarding</string>
-    <string name="flight_status" translatable="false">Status</string>
     <string name="flight_terminal">Terminal:</string>
     <string name="flight_list_last_refresh">Last refresh:</string>
     <string name="flight">Flight</string>
@@ -31,4 +30,23 @@
     <string name="menu_item_mission_3">Mission 3</string>
     <string name="menu_item_settings">Settings</string>
     <string name="menu_item_deconnection">Deconnection</string>
+    <string name="end_first_mission_title">Connection succeed</string>
+    <string name="end_first_mission_message">Identification success, end of the first mission.</string>
+    <string name="incorrect_information">Incorrect information</string>
+    <string name="connection_failure">Connection failure</string>
+    <string name="ok_string">Ok</string>
+    <string name="mission_information">Mission information</string>
+    <string name="first_mission_tips">For this mission, try to login with your AirFrance registration number and usual password.</string>
+    <string name="flight_status">Status</string>
+    <string name="end_second_mission_title">Choosing airport and terminal success</string>
+    <string name="second_mission_tips">For this mission, choose the airport and the terminal of which you want to have more information about.</string>
+    <string name="end_second_mission_message">Successfully choose airport name and terminal , end of the second mission.</string>
+    <string name="end_third_mission_title">Viewing passenger information success</string>
+    <string name="third_mission_tips">For the third mission, try to found the details view for a passenger.</string>
+    <string name="end_third_mission_message">Viewing passenger information success, end of the third mission.</string>
+    <string name="click_broken">Click Broken</string>
+    <string name="no_passengers">No passengers</string>
+    <string name="error">Error</string>
+    <string name="internal_error">Internal error</string>
+    <string name="try_again_later">Try again later</string>
 </resources>

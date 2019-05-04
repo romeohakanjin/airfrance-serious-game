@@ -65,7 +65,7 @@ class FlightInformationsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListe
         swipeToRefreshLayout.setOnRefreshListener {
             // Refresh the list here.
             activity!!.runOnUiThread {
-                refreshAndSetFlightInformations()
+                refreshAndSetFlightInformation()
 
                 swipeToRefreshLayout.isRefreshing = false
             }
@@ -104,7 +104,7 @@ class FlightInformationsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListe
             airportName = intent.getString("airportName").toString()
             missionNumber = intent.getInt("missionNumber").toString().toInt()
 
-            refreshAndSetFlightInformations()
+            refreshAndSetFlightInformation()
 
         }
 
@@ -115,12 +115,12 @@ class FlightInformationsFragment : Fragment(), SwipeRefreshLayout.OnRefreshListe
     /**
      *
      */
-    private fun refreshAndSetFlightInformations(){
+    private fun refreshAndSetFlightInformation(){
         val mService = RetrofitClient.getConnection()!!.create(StackServiceInterface::class.java)
 
         mService.getFlightInformations(flightTime, destination, flight, boarding, status).enqueue(object : Callback<List<Airport>> {
             override fun onFailure(call: Call<List<Airport>>, t: Throwable) {
-                Toast.makeText(context, "Problème de connexion", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.connection_failure, Toast.LENGTH_SHORT).show()
                 t.printStackTrace()
             }
 

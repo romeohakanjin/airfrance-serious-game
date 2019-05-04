@@ -36,6 +36,7 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
     private lateinit var rootView: View
     private lateinit var airportName: String
     private lateinit var airportTerminal: String
+    private var missionNumber: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -75,6 +76,7 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
         if (bundle != null) {
             airportName = bundle.getString("airportName").toString()
             airportTerminal = bundle.getString("airportTerminal").toString()
+            missionNumber = bundle.getInt("missionNumber", 0)
 
             val currentDate = simpleDateFormat.format(Date())
 
@@ -135,31 +137,30 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
                         }
 
                         tableRow.isClickable = true
-                        tableRow.setOnClickListener(object : View.OnClickListener {
-                            override fun onClick(view: View) {
-                                val tableRowSelected = view as TableRow
-                                val flightTimeTextView = tableRowSelected.getChildAt(0)  as TextView
-                                val destinationTextView = tableRowSelected.getChildAt(1)  as TextView
-                                val flightTextView = tableRowSelected.getChildAt(2)  as TextView
-                                val boardingTextView = tableRowSelected.getChildAt(3)  as TextView
-                                val statusTextView = tableRowSelected.getChildAt(4)  as TextView
+                        tableRow.setOnClickListener { view ->
+                            val tableRowSelected = view as TableRow
+                            val flightTimeTextView = tableRowSelected.getChildAt(0)  as TextView
+                            val destinationTextView = tableRowSelected.getChildAt(1)  as TextView
+                            val flightTextView = tableRowSelected.getChildAt(2)  as TextView
+                            val boardingTextView = tableRowSelected.getChildAt(3)  as TextView
+                            val statusTextView = tableRowSelected.getChildAt(4)  as TextView
 
-                                // change view and pass parameters
-                                val intent = Intent(rootView.context, FlightActivity::class.java)
+                            // change view and pass parameters
+                            val intent = Intent(rootView.context, FlightActivity::class.java)
 
-                                // To pass data to next activity
-                                intent.putExtra("flightTimeTextView", flightTimeTextView.text)
-                                intent.putExtra("destinationTextView", destinationTextView.text)
-                                intent.putExtra("flightTextView", flightTextView.text)
-                                intent.putExtra("boardingTextView", boardingTextView.text)
-                                intent.putExtra("statusTextView", statusTextView.text)
-                                intent.putExtra("airportTerminal", airportTerminal)
-                                intent.putExtra("airportName", airportName)
+                            // To pass data to next activity
+                            intent.putExtra("flightTimeTextView", flightTimeTextView.text)
+                            intent.putExtra("destinationTextView", destinationTextView.text)
+                            intent.putExtra("flightTextView", flightTextView.text)
+                            intent.putExtra("boardingTextView", boardingTextView.text)
+                            intent.putExtra("statusTextView", statusTextView.text)
+                            intent.putExtra("airportTerminal", airportTerminal)
+                            intent.putExtra("airportName", airportName)
+                            intent.putExtra("missionNumber", missionNumber)
 
-                                // start next activity
-                                startActivity(intent)
-                            }
-                        })
+                            // start next activity
+                            startActivity(intent)
+                        }
 
                         // Add the table row to the view
                         flightTableLayout.addView(tableRow)
@@ -182,27 +183,27 @@ class FlightsArrivalFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener 
         val flightTimeTextView = TextView(rootView.context)
         flightTimeTextView.text = getString(R.string.flight_time)
         flightTimeTextView.gravity = Gravity.CENTER
-        flightTimeTextView.setTypeface(flightTimeTextView.getTypeface(), Typeface.BOLD);
+        flightTimeTextView.setTypeface(flightTimeTextView.typeface, Typeface.BOLD);
 
         val destinationTextView = TextView(rootView.context)
         destinationTextView.text = getString(R.string.flight_destination)
         destinationTextView.gravity = Gravity.CENTER
-        destinationTextView.setTypeface(destinationTextView.getTypeface(), Typeface.BOLD);
+        destinationTextView.setTypeface(destinationTextView.typeface, Typeface.BOLD);
 
         val flightTextView = TextView(rootView.context)
         flightTextView.text = getString(R.string.flight_number)
         flightTextView.gravity = Gravity.CENTER
-        flightTextView.setTypeface(flightTextView.getTypeface(), Typeface.BOLD);
+        flightTextView.setTypeface(flightTextView.typeface, Typeface.BOLD);
 
         val boardingTextView = TextView(rootView.context)
         boardingTextView.text =getString( R.string.flight_boarding)
         boardingTextView.gravity = Gravity.CENTER
-        boardingTextView.setTypeface(boardingTextView.getTypeface(), Typeface.BOLD);
+        boardingTextView.setTypeface(boardingTextView.typeface, Typeface.BOLD);
 
         val statusTextView = TextView(rootView.context)
         statusTextView.text = getString(R.string.flight_status)
         statusTextView.gravity = Gravity.CENTER
-        statusTextView.setTypeface(statusTextView.getTypeface(), Typeface.BOLD);
+        statusTextView.setTypeface(statusTextView.typeface, Typeface.BOLD);
 
         tableRow.run {
             addView(flightTimeTextView)
