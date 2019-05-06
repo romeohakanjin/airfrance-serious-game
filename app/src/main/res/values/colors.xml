@@ -12,4 +12,11 @@
     <color name="colorOrange">#dd5500</color>
     <color name="colorWhiteLignt">#c3c3c3</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="colorBlueF">#011f4b</color>
+    <color name="colorBlueS">#03396c</color>
+    <color name="colorBlueT">#005b96</color>
+    <color name="colorBlueL">#6497b1</color>
+    <color name="colorBlueText">#b3cde0</color>
+
 </resources>

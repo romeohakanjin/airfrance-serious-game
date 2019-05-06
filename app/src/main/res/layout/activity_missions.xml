@@ -6,50 +6,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/login_gradient"
+    android:theme="@style/AppTheme"
+    style="?android:attr/buttonBarStyle"
     tools:context=".MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/side_nav_bar"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    <Button
-        android:id="@+id/btnMission1"
-        android:layout_marginTop="20dp"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
-        android:text="@string/app_first_mission" />
-
-    <Button
-        android:id="@+id/btnMission2"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
-        android:text="@string/app_sec_mission" />
-
-    <Button
-        android:id="@+id/btnMission3"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
-        android:text="@string/app_third_mission" />
-
-    <Button
-        android:id="@+id/btnFreeMode"
-        android:layout_width="160dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
-        android:text="@string/app_disc_mode" />
-
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView4"
         android:layout_width="match_parent"
-        android:layout_height="222dp"
-        android:layout_gravity="top"
-        app:srcCompat="@drawable/croquis_a380" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:contentDescription="logo"
+        app:srcCompat="@drawable/af_logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="50dp">
+
+        <Button
+            android:id="@+id/btnMission1"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight=".50"
+            android:background="@drawable/first_mission"
+            android:text="@string/app_first_mission"
+            android:textColor="@color/colorBlueText"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/btnMission2"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight=".5"
+            android:background="@drawable/second_mission"
+            android:text="@string/app_sec_mission"
+            android:textColor="@color/colorBlueText"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnMission3"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight=".5"
+            android:background="@drawable/third_mission"
+            android:textColor="@color/colorBlueText"
+            android:text="@string/app_third_mission"
+            style="?android:attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/btnFreeMode"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_weight=".5"
+            android:background="@drawable/last_mission"
+            android:textColor="@color/colorBlueText"
+            android:text="@string/app_disc_mode"
+            style="?android:attr/buttonBarButtonStyle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="222dp"
+            android:layout_gravity="top"
+            app:srcCompat="@drawable/croquis_a380"/>
+    </LinearLayout>
+
 </LinearLayout>
