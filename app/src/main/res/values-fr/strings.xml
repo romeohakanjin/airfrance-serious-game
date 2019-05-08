@@ -51,5 +51,5 @@
     <string name="end_third_mission_message">Viewing passenger information success, end of the third mission, end of the third mission.</string>
     <string name="error">Erreur</string>
     <string name="fourth_mission_tips">Dans ce mode vous pouvez naviguer librement dans l\'application, sans restriction.</string>
-    <string name="no_flights_available">Aucun vols diponible</string>
+    <string name="no_flights_available">Aucun vol diponible</string>
 </resources>
