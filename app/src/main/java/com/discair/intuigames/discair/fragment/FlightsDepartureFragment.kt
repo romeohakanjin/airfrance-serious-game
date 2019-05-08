@@ -101,76 +101,85 @@ class FlightsDepartureFragment : Fragment(), SwipeRefreshLayout.OnRefreshListene
                         val listSize: Int = response.body()!!.size
                         val flightTableLayout: TableLayout = rootView.findViewById(R.id.fragementFlightTableLayout)
 
-                        // set the default line labels
-                        var defaultTableRow: TableRow = setFirstRowLabels()
-                        flightTableLayout.addView(defaultTableRow)
+                        if (listSize != 0){
+                            // set the default line labels
+                            val defaultTableRow: TableRow = setFirstRowLabels()
+                            flightTableLayout.addView(defaultTableRow)
 
-                        // For every flights create associated View Component
-                        for (i in 0..(listSize-1)){
-                            val flight: Flight = response.body()!![i].flight!!
-                            val tableRow = TableRow(rootView.context)
-                            tableRow.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
+                            // For every flights create associated View Component
+                            for (i in 0..(listSize-1)){
+                                val flight: Flight = response.body()!![i].flight!!
+                                val tableRow = TableRow(rootView.context)
+                                tableRow.layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT)
 
-                            val flightTimeTextView = TextView(rootView.context)
-                            flightTimeTextView.text = flight.departureTime.toString()
-                            flightTimeTextView.gravity = Gravity.CENTER
+                                val flightTimeTextView = TextView(rootView.context)
+                                flightTimeTextView.text = flight.departureTime.toString()
+                                flightTimeTextView.gravity = Gravity.CENTER
 
-                            val destinationTextView = TextView(rootView.context)
-                            destinationTextView.text = flight.destination.toString()
-                            destinationTextView.gravity = Gravity.CENTER
+                                val destinationTextView = TextView(rootView.context)
+                                destinationTextView.text = flight.destination.toString()
+                                destinationTextView.gravity = Gravity.CENTER
 
-                            val flightTextView = TextView(rootView.context)
-                            flightTextView.text = flight.numFlight.toString()
-                            flightTextView.gravity = Gravity.CENTER
+                                val flightTextView = TextView(rootView.context)
+                                flightTextView.text = flight.numFlight.toString()
+                                flightTextView.gravity = Gravity.CENTER
 
-                            val boardingTextView = TextView(rootView.context)
-                            boardingTextView.text = flight.terminal.toString()
-                            boardingTextView.gravity = Gravity.CENTER
+                                val boardingTextView = TextView(rootView.context)
+                                boardingTextView.text = flight.terminal.toString()
+                                boardingTextView.gravity = Gravity.CENTER
 
-                            val statusTextView = TextView(rootView.context)
-                            statusTextView.text = flight.status!!.wording.toString()
-                            statusTextView.gravity = Gravity.CENTER
+                                val statusTextView = TextView(rootView.context)
+                                statusTextView.text = flight.status!!.wording.toString()
+                                statusTextView.gravity = Gravity.CENTER
 
-                            // Add all the elements to the table row
-                            tableRow.run {
-                                addView(flightTimeTextView)
-                                addView(destinationTextView)
-                                addView(flightTextView)
-                                addView(boardingTextView)
-                                addView(statusTextView)
-                            }
-
-                            tableRow.isClickable = true
-                            tableRow.setOnClickListener(object : View.OnClickListener {
-                                override fun onClick(view: View) {
-                                    val tableRowSelected = view as TableRow
-                                    val flightTimeTextView = tableRowSelected.getChildAt(0)  as TextView
-                                    val destinationTextView = tableRowSelected.getChildAt(1)  as TextView
-                                    val flightTextView = tableRowSelected.getChildAt(2)  as TextView
-                                    val boardingTextView = tableRowSelected.getChildAt(3)  as TextView
-                                    val statusTextView = tableRowSelected.getChildAt(4)  as TextView
-
-                                    // change view and pass parameters
-                                    val intent = Intent(rootView.context, FlightActivity::class.java)
-
-                                    // To pass data to next activity
-                                    intent.putExtra("flightTimeTextView", flightTimeTextView.text)
-                                    intent.putExtra("destinationTextView", destinationTextView.text)
-                                    intent.putExtra("flightTextView", flightTextView.text)
-                                    intent.putExtra("boardingTextView", boardingTextView.text)
-                                    intent.putExtra("statusTextView", statusTextView.text)
-                                    intent.putExtra("airportTerminal", airportTerminal)
-                                    intent.putExtra("airportName", airportName)
-                                    intent.putExtra("missionNumber", missionNumber)
-
-                                    // start next activity
-                                    startActivity(intent)
+                                // Add all the elements to the table row
+                                tableRow.run {
+                                    addView(flightTimeTextView)
+                                    addView(destinationTextView)
+                                    addView(flightTextView)
+                                    addView(boardingTextView)
+                                    addView(statusTextView)
                                 }
-                            })
 
-                            // Add the table row to the view
-                            flightTableLayout.addView(tableRow)
+                                tableRow.isClickable = true
+                                tableRow.setOnClickListener(object : View.OnClickListener {
+                                    override fun onClick(view: View) {
+                                        val tableRowSelected = view as TableRow
+                                        val flightTimeTextView = tableRowSelected.getChildAt(0)  as TextView
+                                        val destinationTextView = tableRowSelected.getChildAt(1)  as TextView
+                                        val flightTextView = tableRowSelected.getChildAt(2)  as TextView
+                                        val boardingTextView = tableRowSelected.getChildAt(3)  as TextView
+                                        val statusTextView = tableRowSelected.getChildAt(4)  as TextView
+
+                                        // change view and pass parameters
+                                        val intent = Intent(rootView.context, FlightActivity::class.java)
+
+                                        // To pass data to next activity
+                                        intent.putExtra("flightTimeTextView", flightTimeTextView.text)
+                                        intent.putExtra("destinationTextView", destinationTextView.text)
+                                        intent.putExtra("flightTextView", flightTextView.text)
+                                        intent.putExtra("boardingTextView", boardingTextView.text)
+                                        intent.putExtra("statusTextView", statusTextView.text)
+                                        intent.putExtra("airportTerminal", airportTerminal)
+                                        intent.putExtra("airportName", airportName)
+                                        intent.putExtra("missionNumber", missionNumber)
+
+                                        // start next activity
+                                        startActivity(intent)
+                                    }
+                                })
+
+                                // Add the table row to the view
+                                flightTableLayout.addView(tableRow)
+                            }
+                        } else{
+                            val noFlightsTextView: TextView = TextView(rootView.context)
+                            noFlightsTextView.text = rootView.context.getString(R.string.no_flights_available).toString()
+                            noFlightsTextView.typeface = Typeface.DEFAULT_BOLD
+                            noFlightsTextView.gravity = Gravity.CENTER
+                            flightTableLayout.addView(noFlightsTextView)
                         }
+
                     }catch(exception: Exception){
                         exception.printStackTrace()
                     }
