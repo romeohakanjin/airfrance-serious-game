@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/login_gradient"
     android:gravity="center">
 
 
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Congratulations !"
+        android:textColor="@color/colorWhite"
         android:textSize="36sp"
         android:textStyle="bold" />
 
@@ -21,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textColor="@color/colorWhite"
         android:text="Select a different mission now"
         android:textSize="30sp" />
 
@@ -29,6 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Click Here"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/round_button"
         android:textAlignment="center" />
 
 </LinearLayout>

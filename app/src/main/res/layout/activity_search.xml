@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/login_gradient"
     tools:context=".SearchActivity">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:text="Recherche"
+        android:textColor="@color/colorWhite"
         tools:layout_editor_absoluteX="84dp"
         tools:layout_editor_absoluteY="85dp" />
 
@@ -26,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"
+        android:textColor="@color/colorWhite"
         android:id="@+id/number_search_edittext"
         android:hint="Num de la recherche"/>
 
@@ -34,6 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_validate"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/round_button"
         tools:layout_editor_absoluteX="148dp"
         tools:layout_editor_absoluteY="239dp" />
 </LinearLayout>
