@@ -61,6 +61,23 @@ class AirportTerminalActivity : AppCompatActivity(), NavigationView.OnNavigation
 
             // Display the alert dialog on app interface
             dialog.show()
+        } else if (4 == missionNumber){
+            // Set the alert dialog title
+            builder.setTitle(R.string.mission_information)
+
+            // Display a message on alert dialog
+            builder.setMessage(R.string.fourth_mission_tips)
+
+            // Set a positive button and its click listener on alert dialog
+            builder.setPositiveButton(R.string.ok_string) { _, _ ->
+                // do nothing
+            }
+
+            // Finally, make the alert dialog using builder
+            val dialog: AlertDialog = builder.create()
+
+            // Display the alert dialog on app interface
+            dialog.show()
         }
 
         sessionManager = SessionManager(applicationContext)

@@ -50,4 +50,5 @@
     <string name="end_third_mission_title">Succès d\'accès aux informations d\'un passager</string>
     <string name="end_third_mission_message">Viewing passenger information success, end of the third mission, end of the third mission.</string>
     <string name="error">Erreur</string>
+    <string name="fourth_mission_tips">Dans ce mode vous pouvez naviguer librement dans l\'application, sans restriction.</string>
 </resources>
